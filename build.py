@@ -34,6 +34,12 @@ WIDGETS = {
         'widget': 'widgets/02-what-should-i-throw/widget.js',
         'mount': '<div data-fbf-throw data-species="{{SPECIES}}"></div>',
     },
+    'setup': {
+        'marker': 'setup',
+        'libs': ['lib/affiliate.js'],
+        'widget': 'widgets/03-setup-matcher/widget.js',
+        'mount': '<div data-fbf-setup data-scenario="{{SCENARIO}}"></div>',
+    },
 }
 
 def read(rel):
