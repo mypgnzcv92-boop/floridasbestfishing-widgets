@@ -1,29 +1,40 @@
 #!/usr/bin/env python3
-"""Build the solunar widget for deployment.
+"""Build all FBF widgets into deployable bundles + loaders.
 
-WHY a loader (not an inline block): WordPress's content formatter garbles inline
-<script> that builds HTML strings (it reads '<div>' etc. as real tags). So we host
-the bundle on GitHub -> jsDelivr and each page only gets a tiny, un-garble-able
-loader: a placeholder <div> + a <script src>.
+WHY loaders (not inline blocks): WordPress garbles inline <script> that builds
+HTML strings (it reads '<div>' etc. as real tags). So each widget's JS is hosted
+on GitHub -> jsDelivr, and each page gets only a tiny loader: a placeholder <div>
++ a <script src>. The loader has no inline code to mangle.
 
-Outputs:
-  dist/solunar-bundle.js            the concatenated engine+widget (served by jsDelivr)
-  dist/solunar-block.template.html  the per-page loader, {{REGION}} filled by deploy.py
+For each widget: dist/<key>-bundle.js (served by jsDelivr) + dist/<key>-block.template.html
+(the per-page loader, with a placeholder for deploy.py to fill).
 
-After editing lib/ or widget.js: run this, commit, push (so jsDelivr updates),
-then run deploy.py. For an immediate jsDelivr refresh of @main, purge:
-  https://purge.jsdelivr.net/gh/mypgnzcv92-boop/floridasbestfishing-widgets@main/dist/solunar-bundle.js
+After editing lib/ or a widget.js: run this, COMMIT + PUSH (so jsDelivr serves the
+new bundle; purge https://purge.jsdelivr.net/gh/<repo>@main/dist/<key>-bundle.js for
+an instant refresh), then run deploy.py.
 
-Usage: python3 build.py
+Usage: python3 build.py [key ...]   (default: all)
 """
-import os
+import os, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(os.path.join(ROOT, 'dist'), exist_ok=True)
+JSD = 'https://cdn.jsdelivr.net/gh/mypgnzcv92-boop/floridasbestfishing-widgets@main/dist/'
 
-# jsDelivr URL for the hosted bundle (public GitHub repo)
-JSDELIVR = ('https://cdn.jsdelivr.net/gh/mypgnzcv92-boop/'
-            'floridasbestfishing-widgets@main/dist/solunar-bundle.js')
+WIDGETS = {
+    'solunar': {
+        'marker': 'solunar',
+        'libs': ['lib/solunar.js', 'lib/regions.js'],
+        'widget': 'widgets/01-solunar-bite-times/widget.js',
+        'mount': '<div data-fbf-solunar data-region="{{REGION}}"></div>',
+    },
+    'whatsthrow': {
+        'marker': 'throw',
+        'libs': ['lib/affiliate.js'],
+        'widget': 'widgets/02-what-should-i-throw/widget.js',
+        'mount': '<div data-fbf-throw data-species="{{SPECIES}}"></div>',
+    },
+}
 
 def read(rel):
     with open(os.path.join(ROOT, rel), encoding='utf-8') as f:
@@ -33,29 +44,27 @@ def write(rel, content):
     with open(os.path.join(ROOT, rel), 'w', encoding='utf-8') as f:
         f.write(content)
 
-# 1) the bundle jsDelivr serves
-bundle = '\n\n'.join([
-    read('lib/solunar.js'),
-    read('lib/regions.js'),
-    read('widgets/01-solunar-bite-times/widget.js'),
-])
-write('dist/solunar-bundle.js', bundle)
+def build(key):
+    w = WIDGETS[key]
+    bundle = '\n\n'.join([read(p) for p in w['libs']] + [read(w['widget'])])
+    write('dist/' + key + '-bundle.js', bundle)
+    block = (
+        '<!-- FBF:' + w['marker'] + ':start -->\n'
+        '<!-- wp:html -->\n'
+        + w['mount'] + '\n'
+        '<script src="' + JSD + key + '-bundle.js" defer></script>\n'
+        '<!-- /wp:html -->\n'
+        '<!-- FBF:' + w['marker'] + ':end -->'
+    )
+    write('dist/' + key + '-block.template.html', block)
+    kb = os.path.getsize(os.path.join(ROOT, 'dist/' + key + '-bundle.js')) / 1024
+    print('  ' + key + ': dist/' + key + '-bundle.js (%.1f KB) + loader' % kb)
 
-# 2) the lightweight per-page loader (NO inline JS to garble)
-block = (
-    '<!-- FBF:solunar:start -->\n'
-    '<!-- wp:html -->\n'
-    '<div data-fbf-solunar data-region="{{REGION}}"></div>\n'
-    '<script src="' + JSDELIVR + '" defer></script>\n'
-    '<!-- /wp:html -->\n'
-    '<!-- FBF:solunar:end -->'
-)
-write('dist/solunar-block.template.html', block)
-
-def kb(rel):
-    return f'{os.path.getsize(os.path.join(ROOT, rel)) / 1024:.1f} KB'
-
-print('Built:')
-print(f'  dist/solunar-bundle.js            {kb("dist/solunar-bundle.js")}   (-> commit+push for jsDelivr)')
-print(f'  dist/solunar-block.template.html  loader, {os.path.getsize(os.path.join(ROOT, "dist/solunar-block.template.html"))} bytes')
-print('\nNext: python3 deploy.py --dry-run   then   python3 deploy.py')
+if __name__ == '__main__':
+    keys = [k for k in sys.argv[1:]] or list(WIDGETS)
+    print('Built:')
+    for k in keys:
+        if k not in WIDGETS:
+            sys.exit('unknown widget: ' + k)
+        build(k)
+    print('\nNext: commit + push (jsDelivr), then python3 deploy.py')
