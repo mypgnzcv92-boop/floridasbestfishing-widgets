@@ -86,6 +86,9 @@ DEPLOY = {
             ('posts', 330, 'nearshore'), ('posts', 331, 'big-snook'),  # added 2026-07-07 (tripletail, snook season)
             ('posts', 332, 'offshore-bottom'), ('posts', 333, 'offshore-bottom'),  # added 2026-07-07 (mutton, goliath)
             ('posts', 345, 'offshore-bottom'), ('posts', 346, 'offshore-bottom'),  # added 2026-07-08 (gag season, amberjack)
+            ('posts', 383, 'inshore-allround'), ('posts', 384, 'inshore-allround'),  # added 2026-07-10 (braid, inshore rods gear reviews)
+            ('posts', 385, 'offshore-bottom'),  # added 2026-07-10 (hogfish species guide)
+            ('posts', 501, 'big-snook'),  # added 2026-07-16 (mullet run fall blitz how-to)
         ],
     },
 }
