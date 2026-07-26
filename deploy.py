@@ -89,6 +89,8 @@ DEPLOY = {
             ('posts', 383, 'inshore-allround'), ('posts', 384, 'inshore-allround'),  # added 2026-07-10 (braid, inshore rods gear reviews)
             ('posts', 385, 'offshore-bottom'),  # added 2026-07-10 (hogfish species guide)
             ('posts', 501, 'big-snook'),  # added 2026-07-16 (mullet run fall blitz how-to)
+            ('posts', 530, 'offshore-bottom'),  # added 2026-07-20 (Florida snapper fishing PILLAR)
+            ('posts', 537, 'surf'),  # added 2026-07-26 (pompano surf-fishing pillar)
         ],
     },
 }
