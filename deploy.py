@@ -91,6 +91,7 @@ DEPLOY = {
             ('posts', 501, 'big-snook'),  # added 2026-07-16 (mullet run fall blitz how-to)
             ('posts', 530, 'offshore-bottom'),  # added 2026-07-20 (Florida snapper fishing PILLAR)
             ('posts', 537, 'surf'),  # added 2026-07-26 (pompano surf-fishing pillar)
+            ('posts', 550, 'surf'), ('posts', 551, 'surf'),  # added 2026-07-29 (surf beginners PILLAR, whiting spoke)
         ],
     },
 }
