@@ -111,6 +111,28 @@ def wp(method, ep, body=None):
     except urllib.error.HTTPError as e:
         sys.exit(f'\n{method} {ep} -> HTTP {e.code}: {e.read().decode()[:300]}')
 
+def flush_cache():
+    """Purge the GoDaddy page cache AND the Cloudflare edge, headlessly.
+
+    Backed by a custom REST route added to the server mu-plugin (fbf-tweaks.php)
+    on 2026-08-04. It queues WPaaS Cache_V2::ban() onto the 'shutdown' action,
+    which also calls flush_cdn() -- so unlike the admin-bar link this reaches the
+    Cloudflare layer. No browser required.
+
+    GoDaddy throttles bans, so a rapid repeat call may silently no-op.
+    """
+    url = f'{WP_URL}/wp-json/fbf/v1/flush-cache'
+    req = urllib.request.Request(url, data=b'{}', headers=HDR, method='POST')
+    try:
+        with urllib.request.urlopen(req) as r:
+            json.loads(r.read().decode())
+            print('Cache flushed (GoDaddy + Cloudflare).')
+            return True
+    except urllib.error.HTTPError as e:
+        print(f'Cache flush FAILED (HTTP {e.code}) - flush manually via the admin bar.')
+        return False
+
+
 def insert_at(cleaned, block, anchor):
     if anchor == 'gear-section':
         m = re.search(r'<h[23][^>]*>[^<]{0,30}[Gg]ear', cleaned)
@@ -175,6 +197,8 @@ def main():
             sys.exit('unknown widget: ' + k + ' (known: ' + ', '.join(DEPLOY) + ')')
         deploy_widget(k)
     if not DRY:
-        print('\nDone. Flush the GoDaddy page cache to see changes immediately.')
+        print()
+        flush_cache()
+        print('Done.')
 
 main()
