@@ -65,6 +65,7 @@ DEPLOY = {
             ('posts', 321, 'jack-crevalle'),  # added 2026-07-04
             ('posts', 344, 'black-drum'),  # added 2026-07-08 (black drum guide)
             ('posts', 561, 'redfish'),  # added 2026-08-04 (best redfish lures gear post)
+            ('posts', 567, 'seatrout'),  # added 2026-08-08 (best seatrout lures gear post)
             # region pages — preset to each region's signature inshore species, placed by the gear section
             ('pages', 238, 'redfish', GEAR), ('pages', 234, 'snook', GEAR),
             ('pages', 230, 'redfish', GEAR), ('pages', 81, 'snook', GEAR),
