@@ -66,6 +66,7 @@ DEPLOY = {
             ('posts', 344, 'black-drum'),  # added 2026-07-08 (black drum guide)
             ('posts', 561, 'redfish'),  # added 2026-08-04 (best redfish lures gear post)
             ('posts', 567, 'seatrout'),  # added 2026-08-08 (best seatrout lures gear post)
+            ('posts', 576, 'seatrout'),  # added 2026-08-13 (popping cork how-to — seatrout cluster spoke)
             # region pages — preset to each region's signature inshore species, placed by the gear section
             ('pages', 238, 'redfish', GEAR), ('pages', 234, 'snook', GEAR),
             ('pages', 230, 'redfish', GEAR), ('pages', 81, 'snook', GEAR),
@@ -95,6 +96,7 @@ DEPLOY = {
             ('posts', 537, 'surf'),  # added 2026-07-26 (pompano surf-fishing pillar)
             ('posts', 550, 'surf'), ('posts', 551, 'surf'),  # added 2026-07-29 (surf beginners PILLAR, whiting spoke)
             ('posts', 560, 'nearshore'),  # added 2026-08-04 (bull redfish fall run — passes/jetties)
+            ('posts', 579, 'tarpon'),  # added 2026-08-13 (tarpon leader gear post — tarpon cluster)
         ],
     },
 }
