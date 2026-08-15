@@ -9,7 +9,9 @@
 (function (global) {
   'use strict';
 
-  var NAVY = '#0B2A3C', TEAL = '#0D9488', CORAL = '#E8634A', SAND = '#F5F0E8';
+  var NAVY = '#0B2A3C', TEAL = '#0F3A50', CORAL = '#C9A24B', SAND = '#F4EFE6';
+  // Palette retuned to the 2026 rebuild: TEAL is now the deep navy-blue used
+  // for primary marks, CORAL is brass (the single accent), SAND is bone paper.
   var STYLE_ID = 'fbf-throw-style';
 
   // species -> water clarity -> recommended lures/baits.
@@ -172,7 +174,7 @@
     if (document.getElementById(STYLE_ID)) return;
     var css = ''
       + '.fbf-wst{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;'
-      +   'border:1px solid #e2e8e4;border-top:4px solid ' + CORAL + ';border-radius:10px;'
+      +   'border:1px solid #e2e8e4;border-top:4px solid ' + CORAL + ';border-radius:2px;'
       +   'background:' + SAND + ';color:' + NAVY + ';padding:18px 20px;margin:22px 0;'
       +   'box-shadow:0 2px 10px rgba(11,42,60,.06);max-width:600px}'
       + '.fbf-wst *{box-sizing:border-box}'
@@ -181,12 +183,12 @@
       + '.fbf-wst-controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}'
       + '.fbf-wst-field{flex:1;min-width:150px}'
       + '.fbf-wst-field label{display:block;font-size:.72em;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#4a6168;margin-bottom:3px}'
-      + '.fbf-wst-field select{width:100%;font-size:.95em;padding:8px 10px;border:1px solid #cfd8d4;border-radius:8px;background:#fff;color:' + NAVY + '}'
+      + '.fbf-wst-field select{width:100%;font-size:.95em;padding:8px 10px;border:1px solid #cfd8d4;border-radius:2px;background:#fff;color:' + NAVY + '}'
       + '.fbf-wst-list{list-style:none;margin:12px 0 0;padding:0}'
-      + '.fbf-wst-rec{background:#fff;border-radius:8px;border-left:4px solid ' + TEAL + ';padding:10px 12px;margin:8px 0}'
+      + '.fbf-wst-rec{background:#fff;border-radius:2px;border-left:4px solid ' + TEAL + ';padding:10px 12px;margin:8px 0}'
       + '.fbf-wst-rec .rn{font-weight:800;font-size:1.02em}'
       + '.fbf-wst-rec .rc{display:inline-block;font-size:.7em;font-weight:700;text-transform:uppercase;letter-spacing:.03em;'
-      +   'background:' + SAND + ';border:1px solid #d6cfc2;color:' + NAVY + ';border-radius:20px;padding:2px 8px;margin-left:6px;vertical-align:middle}'
+      +   'background:' + SAND + ';border:1px solid #d6cfc2;color:' + NAVY + ';border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}'
       + '.fbf-wst-rec .rw{font-size:.9em;color:#3c5158;margin:4px 0 6px}'
       + '.fbf-wst-rec a{font-size:.85em;font-weight:700;color:' + CORAL + ';text-decoration:none}'
       + '.fbf-wst-rec a:hover{text-decoration:underline}'

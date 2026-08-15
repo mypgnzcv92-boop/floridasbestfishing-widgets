@@ -28,7 +28,9 @@
 (function (global) {
   'use strict';
 
-  var NAVY = '#0B2A3C', TEAL = '#0D9488', CORAL = '#E8634A', SAND = '#F5F0E8';
+  var NAVY = '#0B2A3C', TEAL = '#0F3A50', CORAL = '#C9A24B', SAND = '#F4EFE6';
+  // Palette retuned to the 2026 rebuild: TEAL is now the deep navy-blue used
+  // for primary marks, CORAL is brass (the single accent), SAND is bone paper.
   var STYLE_ID = 'fbf-setup-style';
 
   // scenario -> matched rod/reel/braid/leader spec. kw = Amazon search phrase.
@@ -107,21 +109,21 @@
     if (document.getElementById(STYLE_ID)) return;
     var css = ''
       + '.fbf-set{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;'
-      +   'border:1px solid #e2e8e4;border-top:4px solid ' + NAVY + ';border-radius:10px;'
+      +   'border:1px solid #e2e8e4;border-top:4px solid ' + NAVY + ';border-radius:2px;'
       +   'background:' + SAND + ';color:' + NAVY + ';padding:18px 20px;margin:22px 0;'
       +   'box-shadow:0 2px 10px rgba(11,42,60,.06);max-width:580px}'
       + '.fbf-set *{box-sizing:border-box}'
       + '.fbf-set-title{font-size:1.18em;font-weight:800;margin:0}'
       + '.fbf-set-sub{font-size:.9em;color:#4a6168;margin:2px 0 12px}'
       + '.fbf-set-field label{display:block;font-size:.72em;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#4a6168;margin-bottom:3px}'
-      + '.fbf-set-field select{width:100%;font-size:.95em;padding:8px 10px;border:1px solid #cfd8d4;border-radius:8px;background:#fff;color:' + NAVY + '}'
+      + '.fbf-set-field select{width:100%;font-size:.95em;padding:8px 10px;border:1px solid #cfd8d4;border-radius:2px;background:#fff;color:' + NAVY + '}'
       + '.fbf-set-list{list-style:none;margin:12px 0 0;padding:0}'
-      + '.fbf-set-row{display:flex;align-items:center;gap:10px;background:#fff;border-radius:8px;border-left:4px solid ' + TEAL + ';padding:9px 12px;margin:6px 0}'
+      + '.fbf-set-row{display:flex;align-items:center;gap:10px;background:#fff;border-radius:2px;border-left:4px solid ' + TEAL + ';padding:9px 12px;margin:6px 0}'
       + '.fbf-set-row .rl{flex:0 0 64px;font-size:.7em;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:' + TEAL + '}'
       + '.fbf-set-row .rs{flex:1;font-weight:600;font-size:.95em}'
       + '.fbf-set-row a{font-size:.82em;font-weight:700;color:' + CORAL + ';text-decoration:none;white-space:nowrap}'
       + '.fbf-set-row a:hover{text-decoration:underline}'
-      + '.fbf-set-why{font-size:.9em;color:#3c5158;background:#fff;border-radius:8px;padding:9px 12px;margin:8px 0 0}'
+      + '.fbf-set-why{font-size:.9em;color:#3c5158;background:#fff;border-radius:2px;padding:9px 12px;margin:8px 0 0}'
       + '.fbf-set-why b{color:' + NAVY + '}'
       + '.fbf-set-foot{margin-top:12px;font-size:.74em;color:#6b7d82;font-style:italic}';
     var s = document.createElement('style');

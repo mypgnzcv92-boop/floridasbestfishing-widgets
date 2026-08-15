@@ -266,7 +266,9 @@
 (function (global) {
   'use strict';
 
-  var NAVY = '#0B2A3C', TEAL = '#0D9488', CORAL = '#E8634A', SAND = '#F5F0E8';
+  var NAVY = '#0B2A3C', TEAL = '#0F3A50', CORAL = '#C9A24B', SAND = '#F4EFE6';
+  // Palette retuned to the 2026 rebuild: TEAL is now the deep navy-blue used
+  // for primary marks, CORAL is brass (the single accent), SAND is bone paper.
   var SITE = 'https://floridasbestfishing.com/';
   var STYLE_ID = 'fbf-solunar-style';
 
@@ -274,14 +276,14 @@
     if (document.getElementById(STYLE_ID)) return;
     var css = ''
       + '.fbf-sol{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;'
-      +   'border:1px solid #e2e8e4;border-top:4px solid ' + TEAL + ';border-radius:10px;'
+      +   'border:1px solid #e2e8e4;border-top:4px solid ' + TEAL + ';border-radius:2px;'
       +   'background:' + SAND + ';color:' + NAVY + ';padding:18px 20px;margin:22px 0;'
       +   'box-shadow:0 2px 10px rgba(11,42,60,.06);max-width:560px}'
       + '.fbf-sol *{box-sizing:border-box}'
       + '.fbf-sol-title{font-size:1.18em;font-weight:800;margin:0}'
       + '.fbf-sol-sub{font-size:.9em;color:#4a6168;margin:2px 0 0}'
       + '.fbf-sol-rating{display:flex;align-items:center;justify-content:space-between;'
-      +   'gap:10px;flex-wrap:wrap;margin:12px 0 4px;padding:10px 12px;background:#fff;border-radius:8px}'
+      +   'gap:10px;flex-wrap:wrap;margin:12px 0 4px;padding:10px 12px;background:#fff;border-radius:2px}'
       + '.fbf-sol-stars{font-size:1.25em;letter-spacing:2px;line-height:1}'
       + '.fbf-sol-stars .on{color:' + CORAL + '}.fbf-sol-stars .off{color:#d6cfc2}'
       + '.fbf-sol-rlabel{font-size:.78em;color:#4a6168;display:block;margin-top:2px}'
@@ -289,7 +291,7 @@
       + '.fbf-sol-moon b{display:block;font-weight:700}'
       + '.fbf-sol-list{list-style:none;margin:10px 0 0;padding:0}'
       + '.fbf-sol-win{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:6px 0;'
-      +   'background:#fff;border-radius:8px;border-left:4px solid #ccc}'
+      +   'background:#fff;border-radius:2px;border-left:4px solid #ccc}'
       + '.fbf-sol-win.major{border-left-color:' + TEAL + '}'
       + '.fbf-sol-win.minor{border-left-color:' + CORAL + '}'
       + '.fbf-sol-win.active{box-shadow:0 0 0 2px ' + TEAL + ';background:#effaf6}'
@@ -297,7 +299,7 @@
       + '.fbf-sol-win .wt{font-weight:800;font-size:1.02em;white-space:nowrap}'
       + '.fbf-sol-win .wk{font-size:.8em;color:#4a6168}'
       + '.fbf-sol-badge{font-size:.68em;font-weight:800;letter-spacing:.04em;text-transform:uppercase;'
-      +   'padding:3px 8px;border-radius:20px;white-space:nowrap}'
+      +   'padding:3px 8px;border-radius:999px;white-space:nowrap}'
       + '.fbf-sol-badge.now{background:' + TEAL + ';color:#fff}'
       + '.fbf-sol-badge.next{background:' + SAND + ';color:' + NAVY + ';border:1px solid #d6cfc2}'
       + '.fbf-sol-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;'
