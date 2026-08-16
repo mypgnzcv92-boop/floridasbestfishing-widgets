@@ -40,6 +40,12 @@ WIDGETS = {
         'widget': 'widgets/03-setup-matcher/widget.js',
         'mount': '<div data-fbf-setup data-scenario="{{SCENARIO}}"></div>',
     },
+    'regs': {
+        'marker': 'regs',
+        'libs': ['lib/regs.js'],
+        'widget': 'widgets/04-reg-checker/widget.js',
+        'mount': '<div data-fbf-regs data-species="{{SPECIES}}"></div>',
+    },
 }
 
 def read(rel):

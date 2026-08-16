@@ -99,6 +99,25 @@ DEPLOY = {
             ('posts', 579, 'tarpon'),  # added 2026-08-13 (tarpon leader gear post — tarpon cluster)
         ],
     },
+    'regs': {  # "Is it in season?" FWC size/bag checker -> reg-sensitive guides + tools hub
+        'marker': 'regs', 'template': 'dist/regs-block.template.html',
+        'placeholder': '{{SPECIES}}', 'anchor': 'before-h2',
+        'targets': [
+            ('pages', 298, 'snook', 'append'),          # tools hub
+            ('posts', 138, 'snook'), ('posts', 331, 'snook'),
+            ('posts', 206, 'redfish'), ('posts', 560, 'redfish'),
+            ('posts', 170, 'seatrout'), ('posts', 568, 'seatrout'),
+            ('posts', 139, 'tarpon'),
+            ('posts', 314, 'flounder'), ('posts', 537, 'pompano'),
+            ('posts', 343, 'permit'), ('posts', 385, 'hogfish'),
+            ('posts', 209, 'cobia'),
+            ('posts', 311, 'red-grouper'), ('posts', 345, 'gag-grouper'),
+            ('posts', 333, 'black-grouper'),
+            ('posts', 530, 'mangrove-snapper'), ('posts', 301, 'mangrove-snapper'),
+            ('posts', 319, 'yellowtail-snapper'), ('posts', 332, 'mutton-snapper'),
+            ('posts', 172, 'red-snapper'), ('posts', 302, 'red-snapper'),
+        ],
+    },
 }
 
 HDR = {'Authorization': AUTH, 'Accept': 'application/json',
