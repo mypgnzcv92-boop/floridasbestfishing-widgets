@@ -175,8 +175,28 @@ it — never decide unilaterally.
 
 Finish one cluster (pillar + spokes + full interlink + orphan check) before starting the next.
 Snook → Redfish → Seatrout → Tarpon → Snapper/Grouper-bottom.
-Seasonal overlay on lead time: mullet run (early-Aug), pompano/surf (mid-Sep), stone crab (~Oct 1),
+Seasonal overlay on lead time: mullet run (early-Aug), pompano/surf (mid-Sep),
+**stone crab (season Oct 15 – May 1, FWC-verified 2026-08-16 — publish by ~Oct 1)**,
 sheepshead (~Nov 1), **Gulf gag grouper opener (Sep 1 — short window, high value)**.
+
+## 7.1 NEXT UP — the queue (set 2026-08-16)
+
+Take these in order. Dated ones are seasonal and lose most of their value if they slip past the
+trigger; the undated ones are evergreen Tier-1 gaps and can fill any spare slot. Coverage below was
+verified against all 60 published posts on 2026-08-16 — **none of these exists yet.**
+
+| # | Post | Trigger | Notes |
+|---|---|---|---|
+| 1 | **Bluefish & Spanish Mackerel in the Florida Surf** | **before mid-Sept** — fall run | ⚠️ Post **315** is already a general Spanish mackerel guide. Angle this as the *beach/fall-blitz* piece (wire leader vs bite-offs, fast retrieves, spoons) and link to 315 rather than restating it. **`bluefish` is NOT in `lib/regs.js` — add + rebuild.** Links: 550 surf pillar, 537 pompano, 501 mullet run, 1290 cast net |
+| 2 | **Florida Stone Crab: Season, Claw Limits & How to Trap** | **publish ~Oct 1** (season opens **Oct 15**) | Completes the shellfish set with the existing scallop and lobster posts. FWC-verified 2026-08-16: **Oct 15 – May 1** (closed May 2), claw min **2 7/8″**, **1 gal/person or 2 gal/vessel, whichever is less**, claws only. Re-verify at publish. Not in `regs.js` (crustacean — decide whether the checker should carry it) |
+| 3 | **How to Catch Sheepshead in Florida** | **~Nov 1** — winter species | The biggest single species hole on the site. **Already in `lib/regs.js`** → deploy the regs widget preset to `sheepshead`. Pairs with existing bridge/dock content. Species guide → **must add a card to the `/species/` hub (596)** |
+| 4 | **Pier fishing cluster** (pillar + spokes) | evergreen | *Zero* coverage today and the most accessible way to fish Florida (no boat). Skyway, Sebastian, Juno, Navarre, Anna Maria. The `setup` widget **already has a `pier` preset with nothing pointing at it.** Monetizes on rods, carts, nets, lights |
+| 5 | **Cleaning, Filleting & Cooking Your Catch** | evergreen | Strong evergreen traffic and unusually good gear attachment (knives, boards, vacuum sealers, coolers) |
+| 6 | **Fishing Knots That Actually Matter** | evergreen | Enormous volume, weak direct monetization, but the best internal-link glue available — every gear and species post can point at it |
+
+**Blocked on affiliate approvals, not on writing:** the high-AOV gear posts (optics, technical
+apparel, coolers, electronics). Writing a Costa post monetized at Amazon's 3% wastes the asset —
+sequence those after AvantLink/CJ approval.
 
 # 8. Publishing mechanics
 
