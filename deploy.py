@@ -59,6 +59,7 @@ DEPLOY = {
         'marker': 'throw', 'template': 'dist/whatsthrow-block.template.html',
         'placeholder': '{{SPECIES}}', 'anchor': 'before-h2',
         'targets': [
+            ('pages', 298, 'snook', 'append'),  # tools hub — loader placed by hand at hub build
             ('posts', 138, 'snook'), ('posts', 206, 'redfish'), ('posts', 170, 'seatrout'),
             ('posts', 139, 'tarpon'), ('posts', 171, 'snook'), ('posts', 301, 'mangrove-snapper'),
             ('posts', 314, 'flounder'), ('posts', 315, 'spanish-mackerel'),  # added 2026-06-28
@@ -80,6 +81,7 @@ DEPLOY = {
         'placeholder': '{{SCENARIO}}', 'anchor': 'before-h2',
         'targets': [
             ('pages', 24, 'inshore-allround', 'after-p'), ('pages', 273, 'offshore-bottom'),
+            ('pages', 298, 'inshore-allround', 'append'),  # tools hub
             ('posts', 141, 'inshore-allround'), ('posts', 40, 'beginner', 'after-p'),
             ('posts', 38, 'inshore-allround', 'after-p'),
             ('posts', 302, 'offshore-bottom'), ('posts', 303, 'nearshore'),
