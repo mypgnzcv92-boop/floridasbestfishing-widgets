@@ -44,7 +44,7 @@ WIDGETS = {
         'marker': 'regs',
         'libs': ['lib/regs.js'],
         'widget': 'widgets/04-reg-checker/widget.js',
-        'mount': '<div data-fbf-regs data-species="{{SPECIES}}"></div>',
+        'mount': '<div data-fbf-regs data-species="{{SPECIES}}" data-zone="{{ZONE}}"></div>',
     },
 }
 

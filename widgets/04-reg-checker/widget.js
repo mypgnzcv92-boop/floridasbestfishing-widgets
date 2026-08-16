@@ -38,6 +38,15 @@
 
     var preset = (mount.getAttribute('data-species') || '').toLowerCase();
 
+    // Optional data-zone preselects the coast. Without it the widget always
+    // opened on Gulf, which is actively misleading on Atlantic/Keys content —
+    // snook alone runs a 28-32" slot on the Atlantic vs 28-33" in the Gulf.
+    // Absent or unrecognised falls back to 'gulf' so existing mounts are
+    // unchanged.
+    var ZONES = ['gulf', 'atlantic', 'keys'];
+    var zonePreset = (mount.getAttribute('data-zone') || '').toLowerCase();
+    if (ZONES.indexOf(zonePreset) === -1) { zonePreset = 'gulf'; }
+
     mount.setAttribute('style',
       'border:1px solid ' + RULE + ';border-top:3px solid ' + BRASS + ';background:' + BONE +
       ';border-radius:2px;padding:18px 18px 14px;margin:26px 0;font-family:' + FONT +
@@ -75,9 +84,10 @@
     });
 
     var zn = el('select', selCss);
-    ['gulf', 'atlantic', 'keys'].forEach(function (z) {
+    ZONES.forEach(function (z) {
       var o = document.createElement('option');
       o.value = z; o.textContent = R.zones[z];
+      if (z === zonePreset) { o.selected = true; }
       zn.appendChild(o);
     });
 

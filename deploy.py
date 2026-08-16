@@ -112,13 +112,13 @@ DEPLOY = {
             ('posts', 170, 'seatrout'), ('posts', 568, 'seatrout'),
             ('posts', 139, 'tarpon'),
             ('posts', 314, 'flounder'), ('posts', 537, 'pompano'),
-            ('posts', 343, 'permit'), ('posts', 385, 'hogfish'),
+            ('posts', 343, 'permit@keys'), ('posts', 385, 'hogfish@keys'),
             ('posts', 209, 'cobia'),
             ('posts', 311, 'red-grouper'), ('posts', 345, 'gag-grouper', 'keep'),
             ('posts', 333, 'black-grouper'),
             ('posts', 530, 'mangrove-snapper'), ('posts', 301, 'mangrove-snapper'),
-            ('posts', 319, 'yellowtail-snapper'), ('posts', 332, 'mutton-snapper'),
-            ('posts', 172, 'red-snapper'), ('posts', 302, 'red-snapper'),
+            ('posts', 319, 'yellowtail-snapper@keys'), ('posts', 332, 'mutton-snapper@keys'),
+            ('posts', 172, 'red-snapper'), ('posts', 302, 'red-snapper@atlantic'),
             ('posts', 829, 'gag-grouper', 'keep'),  # grouper tackle guide (2026-08-16) — authors its own placement
         ],
     },
@@ -221,7 +221,14 @@ def deploy_widget(key):
         page = wp('GET', f'{ptype}/{pid}?context=edit&_fields=id,content')
         raw = (page.get('content') or {}).get('raw', '')
         verb = 'refresh' if ('FBF:' + w['marker'] + ':start') in raw else 'ADD'
-        new, where = upsert(raw, tpl.replace(w['placeholder'], preset), w['marker'], anchor)
+        # A preset may carry a zone as "species@zone" (regs widget only). Splitting
+        # here keeps the targets list readable and leaves single-value presets
+        # (every other widget) working exactly as before.
+        species, _, zone = preset.partition('@')
+        block = tpl.replace(w['placeholder'], species)
+        if '{{ZONE}}' in block:
+            block = block.replace('{{ZONE}}', zone or 'gulf')
+        new, where = upsert(raw, block, w['marker'], anchor)
         if DRY:
             print(f"  {ptype}/{pid:<4} [{preset:<16}] would {verb:<7} ({where})  net {len(new)-len(raw):+,}b")
         else:
