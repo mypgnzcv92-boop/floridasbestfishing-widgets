@@ -52,6 +52,19 @@
 
   var SPECIES = [
     {
+      key: 'mullet', name: 'Mullet (bait)', group: 'Bait', guide: '/how-to-throw-a-cast-net-florida/',
+      fwc: FWC + 'mullet/',
+      note: 'Legal gear includes cast net. No minimum size. More restrictive limits apply in Pinellas County, and parts of Charlotte County have seasonal night closures.',
+      zones: {
+        atlantic: { size: 'No minimum size', bag: '50 per person per day', season: YEAR_ROUND,
+          seasonText: 'Open year-round',
+          regionNote: 'VESSEL limit tightens to 50 from Sept 1 \u2013 Jan 31 (it is 100 from Feb 1 \u2013 Aug 31) \u2014 that stricter window covers the whole mullet run.' },
+        gulf: { size: 'No minimum size', bag: '50 per person per day', season: YEAR_ROUND,
+          seasonText: 'Open year-round',
+          regionNote: 'VESSEL limit tightens to 50 from Sept 1 \u2013 Jan 31 (it is 100 from Feb 1 \u2013 Aug 31). Pinellas County is more restrictive still.' }
+      }
+    },
+    {
       key: 'snook', name: 'Snook', group: 'Inshore', guide: '/how-to-catch-snook-florida/',
       fwc: FWC + 'snook/',
       note: 'Snook permit required in addition to a saltwater licence. Must stay whole until ashore; hook and line only.',
