@@ -15,7 +15,7 @@ default): 'after-tide' | 'before-h2' | 'after-p' | 'append' | ('before-text', T)
 
 Requires .env: WP_USERNAME, WP_APP_PASSWORD, WP_URL
 """
-import sys, os, re, json, base64, urllib.request, urllib.error
+import sys, os, re, json, base64, subprocess, urllib.request, urllib.error
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DRY = '--dry-run' in sys.argv
@@ -93,7 +93,7 @@ DEPLOY = {
             ('posts', 345, 'offshore-bottom', 'keep'), ('posts', 346, 'offshore-bottom'),  # gag season authors its own placement
             ('posts', 383, 'inshore-allround'), ('posts', 384, 'inshore-allround'),  # added 2026-07-10 (braid, inshore rods gear reviews)
             ('posts', 385, 'offshore-bottom'),  # added 2026-07-10 (hogfish species guide)
-            ('posts', 501, 'big-snook'),  # added 2026-07-16 (mullet run fall blitz how-to)
+            ('posts', 501, 'big-snook', 'keep'),  # mullet run pillar — hand-placed after the tackle list
             ('posts', 530, 'offshore-bottom'),  # added 2026-07-20 (Florida snapper fishing PILLAR)
             ('posts', 537, 'surf'),  # added 2026-07-26 (pompano surf-fishing pillar)
             ('posts', 550, 'surf'), ('posts', 551, 'surf'),  # added 2026-07-29 (surf beginners PILLAR, whiting spoke)
@@ -120,6 +120,8 @@ DEPLOY = {
             ('posts', 319, 'yellowtail-snapper@keys'), ('posts', 332, 'mutton-snapper@keys'),
             ('posts', 172, 'red-snapper'), ('posts', 302, 'red-snapper@atlantic'),
             ('posts', 829, 'gag-grouper', 'keep'),  # grouper tackle guide (2026-08-16) — authors its own placement
+            ('posts', 1290, 'mullet', 'keep'),  # cast net guide (2026-08-16) — widget sits inside its own bite band
+            ('posts', 501, 'snook', 'keep'),  # mullet run pillar — was hand-placed and unmanaged until 2026-08-16
         ],
     },
 }
@@ -208,12 +210,40 @@ def upsert(content, block, marker, anchor):
 
     return insert_at(pat.sub('', content), block, anchor)
 
+def pin_to_commit(tpl):
+    """Rewrite @main loader URLs to the commit currently checked out.
+
+    build.py can't know the SHA (the commit doesn't exist until after it runs),
+    but deploy.py always runs after commit + push, so it can. This matters
+    because jsDelivr serves @main with max-age=604800: a reader who fetched the
+    old bundle keeps it for a week while a new reader gets the new one. A commit
+    SHA is immutable, so the URL necessarily changes whenever the bundle does.
+
+    Refuses to pin a SHA that isn't pushed — jsDelivr would 404 on it.
+    """
+    def git(*args):
+        return subprocess.run(('git',) + args, cwd=ROOT, capture_output=True,
+                              text=True).stdout.strip()
+
+    sha = git('rev-parse', 'HEAD')
+    if not re.fullmatch(r'[0-9a-f]{40}', sha):
+        print('  ! not a git checkout — leaving loaders on @main')
+        return tpl
+
+    if git('status', '--porcelain', 'dist'):
+        sys.exit('dist/ has uncommitted changes — commit and push before deploying.')
+
+    if not git('branch', '-r', '--contains', sha):
+        sys.exit('HEAD (%s) is on no remote branch — jsDelivr would 404 on it.' % sha[:8])
+
+    return tpl.replace('@main/dist/', '@' + sha + '/dist/')
+
 def deploy_widget(key):
     w = DEPLOY[key]
     tpl_path = os.path.join(ROOT, w['template'])
     if not os.path.exists(tpl_path):
         sys.exit('No build for ' + key + ' — run: python3 build.py')
-    tpl = open(tpl_path, encoding='utf-8').read()
+    tpl = pin_to_commit(open(tpl_path, encoding='utf-8').read())
     print(f"\n[{key}] -> {len(w['targets'])} page(s){'  [DRY RUN]' if DRY else ''}")
     for t in w['targets']:
         ptype, pid, preset = t[0], t[1], t[2]
