@@ -293,7 +293,9 @@
       + '.fbf-sol-stars .on{color:' + CORAL + '}.fbf-sol-stars .off{color:#d6cfc2}'
       + '.fbf-sol-rlabel{font-size:.78em;color:#4a6168;display:block;margin-top:2px}'
       + '.fbf-sol-moon{font-size:.9em;color:' + NAVY + ';text-align:right}'
-      + '.fbf-sol-moon b{display:block;font-weight:700}'
+      // extra .fbf-sol prefix: host rules like `.fbf-bite b` / `.fbf-bite a` are (0,1,1) and
+      // would otherwise out-rank the blanket `.fbf-sol *` guard on these two elements
+      + '.fbf-sol .fbf-sol-moon b{display:block;font-weight:700;color:' + NAVY + '}'
       + '.fbf-sol-list{list-style:none;margin:10px 0 0;padding:0}'
       + '.fbf-sol-win{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:6px 0;'
       +   'background:#fff;border-radius:2px;border-left:4px solid #ccc}'
@@ -309,8 +311,8 @@
       + '.fbf-sol-badge.next{background:' + SAND + ';color:' + NAVY + ';border:1px solid #d6cfc2}'
       + '.fbf-sol-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;'
       +   'flex-wrap:wrap;margin-top:12px;font-size:.82em;color:#4a6168}'
-      + '.fbf-sol-foot a{color:' + TEAL + ';font-weight:700;text-decoration:none}'
-      + '.fbf-sol-foot a:hover{text-decoration:underline}';
+      + '.fbf-sol .fbf-sol-foot a{color:' + TEAL + ';font-weight:700;text-decoration:underline}'
+      + '.fbf-sol .fbf-sol-foot a:hover{text-decoration:none}';
     var s = document.createElement('style');
     s.id = STYLE_ID; s.textContent = css;
     document.head.appendChild(s);
