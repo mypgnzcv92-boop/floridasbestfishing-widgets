@@ -101,17 +101,23 @@
     var foot = el('div',
       'margin-top:14px;padding-top:10px;border-top:1px solid ' + RULE +
       ';font-size:12.5px;color:' + STEEL + ';line-height:1.5');
-    foot.innerHTML = 'Rules checked <b style="color:' + DEEP + '">' + esc(R.verified) +
-      '</b>. Regulations change, sometimes mid-season &mdash; always confirm on ' +
-      '<a href="https://myfwc.com/fishing/saltwater/recreational/" target="_blank" rel="noopener" ' +
-      'style="color:' + DEEP + ';font-weight:600">MyFWC.com</a> before you keep a fish. ' +
-      'This tool is a fast reference, not a legal authority.';
+    // A species checked more recently than the dataset as a whole carries its own
+    // date, so the footer never claims a check that did not happen.
+    function setFoot(when) {
+      foot.innerHTML = 'Rules checked <b style="color:' + DEEP + '">' + esc(when) +
+        '</b>. Regulations change, sometimes mid-season &mdash; always confirm on ' +
+        '<a href="https://myfwc.com/fishing/saltwater/recreational/" target="_blank" rel="noopener" ' +
+        'style="color:' + DEEP + ';font-weight:600">MyFWC.com</a> before you keep a fish. ' +
+        'This tool is a fast reference, not a legal authority.';
+    }
+    setFoot(R.verified);
     mount.appendChild(foot);
 
     function draw() {
       var s = null, i;
       for (i = 0; i < R.species.length; i++) { if (R.species[i].key === sp.value) { s = R.species[i]; break; } }
       if (!s) return;
+      setFoot(s.verified || R.verified);
 
       // some species have no distinct Keys rule — fall back to Atlantic
       var zoneKey = zn.value;

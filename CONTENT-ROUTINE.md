@@ -65,7 +65,7 @@ nav, eyebrows). All self-hosted in the theme; no Google Fonts request.
 
 | Key | Marker | Mount | Presets |
 |---|---|---|---|
-| `regs` | `FBF:regs` | `data-fbf-regs data-species` | 19 species keys in `lib/regs.js` |
+| `regs` | `FBF:regs` | `data-fbf-regs data-species` | 22 species keys in `lib/regs.js` |
 | `throw` | `FBF:throw` | `data-fbf-throw data-species` | snook, redfish, seatrout, tarpon, flounder, sheepshead, black-drum, jack-crevalle, spanish-mackerel, mangrove-snapper |
 | `setup` | `FBF:setup` | `data-fbf-setup data-scenario` | beginner, inshore-allround, big-snook, nearshore, offshore-bottom, offshore-troll, pier, surf, tarpon |
 | `solunar` | `FBF:solunar` | `data-fbf-solunar data-region` | region keys from `lib/regions.js` |
@@ -222,5 +222,10 @@ sequence those after AvantLink/CJ approval.
 - Posts-per-week is a guardrail, not a law — the gate wins.
 - Amazon uncloak: parked pending William.
 - GA4: star `affiliate_click` + `newsletter_signup` as Key events once they clear processing lag.
-- `lib/regs.js` covers 19 species. Pompano's FWC page 404s under the obvious slug (it lives on the
+- `lib/regs.js` covers 22 species. Pompano's FWC page 404s under the obvious slug (it lives on the
   permit page). Adding species is cheap — do it when a guide needs one.
+- A species checked more recently than the dataset carries its own `verified` date and the widget
+  footer prefers it, so adding one species never backdates — or forward-dates — the other 21.
+- ⚠️ The widget falls back `keys → atlantic` when a species has no `keys` zone. That is right when
+  the rule is statewide and **wrong** whenever Monroe follows the Gulf rule (bluefish: 10, not 3).
+  Always ask which way Monroe goes before leaving `keys` out.

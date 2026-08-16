@@ -147,6 +147,21 @@
       }
     },
     {
+      key: 'bluefish', name: 'Bluefish', group: 'Surf', guide: '/bluefish-spanish-mackerel-florida-surf/',
+      fwc: FWC + 'bluefish/', verified: '2026-08-16',
+      note: 'Legal gear includes hook and line, cast net, seine, gig and spear. The Atlantic bag limit was cut to 3 in 2020 after a federal assessment found the stock overfished.',
+      zones: {
+        atlantic: { size: '12" fork length', bag: '3 per person per day', season: YEAR_ROUND,
+          seasonText: 'Open year-round',
+          regionNote: 'The 3-fish limit covers the Atlantic coast, Nassau through Miami-Dade. For-hire vessels are allowed 5 per person.' },
+        gulf: { size: '12" fork length', bag: '10 per person per day', season: YEAR_ROUND,
+          seasonText: 'Open year-round' },
+        keys: { size: '12" fork length', bag: '10 per person per day', season: YEAR_ROUND,
+          seasonText: 'Open year-round',
+          regionNote: 'Monroe County follows the Gulf rule, not the 3-fish Atlantic limit.' }
+      }
+    },
+    {
       key: 'permit', name: 'Permit', group: 'Flats', guide: '/how-to-catch-permit-florida/',
       fwc: FWC + 'permit/',
       note: 'Hook and line only in state waters.',
@@ -161,6 +176,15 @@
           season: { kind: 'closedWindows', w: [['04-01', '07-31']] },
           seasonText: 'Special Permit Zone closed Apr 1–Jul 31',
           regionNote: 'The Special Permit Zone covers waters south of Cape Florida and south of Cape Sable.' }
+      }
+    },
+    {
+      key: 'spanish-mackerel', name: 'Spanish Mackerel', group: 'Nearshore', guide: '/how-to-catch-spanish-mackerel-florida/',
+      fwc: FWC + 'spanish-mackerel/', verified: '2026-08-16',
+      note: 'Legal gear includes hook and line, cast net, beach or haul seine and spear.',
+      zones: {
+        atlantic: { size: '12" fork length', bag: '15 per person per day', season: YEAR_ROUND, seasonText: 'Open year-round' },
+        gulf: { size: '12" fork length', bag: '15 per person per day', season: YEAR_ROUND, seasonText: 'Open year-round' }
       }
     },
     {
@@ -387,17 +411,23 @@
     var foot = el('div',
       'margin-top:14px;padding-top:10px;border-top:1px solid ' + RULE +
       ';font-size:12.5px;color:' + STEEL + ';line-height:1.5');
-    foot.innerHTML = 'Rules checked <b style="color:' + DEEP + '">' + esc(R.verified) +
-      '</b>. Regulations change, sometimes mid-season &mdash; always confirm on ' +
-      '<a href="https://myfwc.com/fishing/saltwater/recreational/" target="_blank" rel="noopener" ' +
-      'style="color:' + DEEP + ';font-weight:600">MyFWC.com</a> before you keep a fish. ' +
-      'This tool is a fast reference, not a legal authority.';
+    // A species checked more recently than the dataset as a whole carries its own
+    // date, so the footer never claims a check that did not happen.
+    function setFoot(when) {
+      foot.innerHTML = 'Rules checked <b style="color:' + DEEP + '">' + esc(when) +
+        '</b>. Regulations change, sometimes mid-season &mdash; always confirm on ' +
+        '<a href="https://myfwc.com/fishing/saltwater/recreational/" target="_blank" rel="noopener" ' +
+        'style="color:' + DEEP + ';font-weight:600">MyFWC.com</a> before you keep a fish. ' +
+        'This tool is a fast reference, not a legal authority.';
+    }
+    setFoot(R.verified);
     mount.appendChild(foot);
 
     function draw() {
       var s = null, i;
       for (i = 0; i < R.species.length; i++) { if (R.species[i].key === sp.value) { s = R.species[i]; break; } }
       if (!s) return;
+      setFoot(s.verified || R.verified);
 
       // some species have no distinct Keys rule — fall back to Atlantic
       var zoneKey = zn.value;
