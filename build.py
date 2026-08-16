@@ -15,7 +15,7 @@ an instant refresh), then run deploy.py.
 
 Usage: python3 build.py [key ...]   (default: all)
 """
-import os, sys
+import os, sys, hashlib
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(os.path.join(ROOT, 'dist'), exist_ok=True)
@@ -60,11 +60,15 @@ def build(key):
     w = WIDGETS[key]
     bundle = '\n\n'.join([read(p) for p in w['libs']] + [read(w['widget'])])
     write('dist/' + key + '-bundle.js', bundle)
+    # jsDelivr serves bundles with max-age=604800 (7 days) in the BROWSER, so a
+    # content change alone does not reach returning visitors. Version the loader
+    # URL with a content hash so the URL itself changes.
+    ver = hashlib.sha1(bundle.encode('utf-8')).hexdigest()[:8]
     block = (
         '<!-- FBF:' + w['marker'] + ':start -->\n'
         '<!-- wp:html -->\n'
         + w['mount'] + '\n'
-        '<script src="' + JSD + key + '-bundle.js" defer></script>\n'
+        '<script src="' + JSD + key + '-bundle.js?v=' + ver + '" defer></script>\n'
         '<!-- /wp:html -->\n'
         '<!-- FBF:' + w['marker'] + ':end -->'
     )
