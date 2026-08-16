@@ -70,6 +70,10 @@ nav, eyebrows). All self-hosted in the theme; no Google Fonts request.
 | `setup` | `FBF:setup` | `data-fbf-setup data-scenario` | beginner, inshore-allround, big-snook, nearshore, offshore-bottom, offshore-troll, pier, surf, tarpon |
 | `solunar` | `FBF:solunar` | `data-fbf-solunar data-region` | region keys from `lib/regions.js` |
 
+⚠️ **If the post body authors its own widget placement, use the `keep` anchor in `deploy.py`.**
+Every other anchor strips the marker and re-inserts at the anchor — i.e. it RELOCATES the widget on
+every run, which will hoist a hand-placed widget out of the section it was written into.
+
 ⚠️ **Loader URLs carry a content hash** (`?v=<sha1[:8]>`). jsDelivr caches bundles for **7 days in
 the visitor's browser**, so a content change alone never reaches returning visitors. Always
 `build.py` → commit → push → purge jsDelivr → `deploy.py`. Never hand-write a loader without `?v=`.
