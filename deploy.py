@@ -90,7 +90,7 @@ DEPLOY = {
             ('posts', 319, 'offshore-bottom'), ('posts', 320, 'surf'),  # added 2026-07-04 (yellowtail, shark surf)
             ('posts', 330, 'nearshore'), ('posts', 331, 'big-snook'),  # added 2026-07-07 (tripletail, snook season)
             ('posts', 332, 'offshore-bottom'), ('posts', 333, 'offshore-bottom'),  # added 2026-07-07 (mutton, goliath)
-            ('posts', 345, 'offshore-bottom'), ('posts', 346, 'offshore-bottom'),  # added 2026-07-08 (gag season, amberjack)
+            ('posts', 345, 'offshore-bottom', 'keep'), ('posts', 346, 'offshore-bottom'),  # gag season authors its own placement
             ('posts', 383, 'inshore-allround'), ('posts', 384, 'inshore-allround'),  # added 2026-07-10 (braid, inshore rods gear reviews)
             ('posts', 385, 'offshore-bottom'),  # added 2026-07-10 (hogfish species guide)
             ('posts', 501, 'big-snook'),  # added 2026-07-16 (mullet run fall blitz how-to)
@@ -99,7 +99,7 @@ DEPLOY = {
             ('posts', 550, 'surf'), ('posts', 551, 'surf'),  # added 2026-07-29 (surf beginners PILLAR, whiting spoke)
             ('posts', 560, 'nearshore'),  # added 2026-08-04 (bull redfish fall run — passes/jetties)
             ('posts', 579, 'tarpon'),  # added 2026-08-13 (tarpon leader gear post — tarpon cluster)
-            ('posts', 829, 'offshore-bottom'),  # grouper tackle guide (2026-08-16)
+            ('posts', 829, 'offshore-bottom', 'keep'),  # grouper tackle guide (2026-08-16) — authors its own placement
         ],
     },
     'regs': {  # "Is it in season?" FWC size/bag checker -> reg-sensitive guides + tools hub
@@ -114,12 +114,12 @@ DEPLOY = {
             ('posts', 314, 'flounder'), ('posts', 537, 'pompano'),
             ('posts', 343, 'permit'), ('posts', 385, 'hogfish'),
             ('posts', 209, 'cobia'),
-            ('posts', 311, 'red-grouper'), ('posts', 345, 'gag-grouper'),
+            ('posts', 311, 'red-grouper'), ('posts', 345, 'gag-grouper', 'keep'),
             ('posts', 333, 'black-grouper'),
             ('posts', 530, 'mangrove-snapper'), ('posts', 301, 'mangrove-snapper'),
             ('posts', 319, 'yellowtail-snapper'), ('posts', 332, 'mutton-snapper'),
             ('posts', 172, 'red-snapper'), ('posts', 302, 'red-snapper'),
-            ('posts', 829, 'gag-grouper'),  # grouper tackle guide (2026-08-16)
+            ('posts', 829, 'gag-grouper', 'keep'),  # grouper tackle guide (2026-08-16) — authors its own placement
         ],
     },
 }
@@ -194,6 +194,18 @@ def insert_at(cleaned, block, anchor):
 def upsert(content, block, marker, anchor):
     pat = re.compile(r'\n?<!-- FBF:' + re.escape(marker) + r':start -->.*?<!-- FBF:'
                      + re.escape(marker) + r':end -->\n?', re.S)
+
+    # 'keep' = the post AUTHORS its own widget placement. Every other anchor
+    # strips the existing block and re-inserts at the anchor, i.e. it RELOCATES
+    # the widget on every run — which silently hoists hand-placed widgets out of
+    # the section they were written into. Use 'keep' for any post whose body was
+    # written with the markers already in the right spot.
+    if anchor == 'keep':
+        m = pat.search(content)
+        if m:
+            return content[:m.start()] + '\n' + block + '\n' + content[m.end():], 'kept in place'
+        return insert_at(content, block, 'before-h2')   # first deploy: place it sensibly
+
     return insert_at(pat.sub('', content), block, anchor)
 
 def deploy_widget(key):
