@@ -178,6 +178,9 @@
       +   'background:' + SAND + ';color:' + NAVY + ';padding:18px 20px;margin:22px 0;'
       +   'box-shadow:0 2px 10px rgba(11,42,60,.06);max-width:600px}'
       + '.fbf-wst *{box-sizing:border-box}'
+      // re-assert the base colour so nothing inherits a light text colour from a dark host
+      // section and renders near-invisible on the widget's white rows (see solunar .wt bug)
+      + '.fbf-wst,.fbf-wst *{color:' + NAVY + '}'
       + '.fbf-wst-title{font-size:1.18em;font-weight:800;margin:0}'
       + '.fbf-wst-sub{font-size:.9em;color:#4a6168;margin:2px 0 12px}'
       + '.fbf-wst-controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}'

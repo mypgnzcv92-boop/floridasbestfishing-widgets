@@ -94,6 +94,9 @@
       +   'background:' + SAND + ';color:' + NAVY + ';padding:18px 20px;margin:22px 0;'
       +   'box-shadow:0 2px 10px rgba(11,42,60,.06);max-width:580px}'
       + '.fbf-set *{box-sizing:border-box}'
+      // re-assert the base colour so nothing inherits a light text colour from a dark host
+      // section and renders near-invisible on the widget's white rows (see solunar .wt bug)
+      + '.fbf-set,.fbf-set *{color:' + NAVY + '}'
       + '.fbf-set-title{font-size:1.18em;font-weight:800;margin:0}'
       + '.fbf-set-sub{font-size:.9em;color:#4a6168;margin:2px 0 12px}'
       + '.fbf-set-field label{display:block;font-size:.72em;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#4a6168;margin-bottom:3px}'

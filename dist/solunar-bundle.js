@@ -280,7 +280,12 @@
       +   'background:' + SAND + ';color:' + NAVY + ';padding:18px 20px;margin:22px 0;'
       +   'box-shadow:0 2px 10px rgba(11,42,60,.06);max-width:560px}'
       + '.fbf-sol *{box-sizing:border-box}'
-      + '.fbf-sol-title{font-size:1.18em;font-weight:800;margin:0}'
+      // Host pages can set a light text colour on a surrounding dark section (the homepage
+      // .fbf-bite wrapper sets sand). Anything here that does NOT declare its own colour would
+      // inherit that and render near-invisible on the widget's white rows, so re-assert the
+      // base colour on every descendant and let the specific rules below override it.
+      + '.fbf-sol,.fbf-sol *{color:' + NAVY + '}'
+      + '.fbf-sol-title{font-size:1.18em;font-weight:800;margin:0;color:' + NAVY + '}'
       + '.fbf-sol-sub{font-size:.9em;color:#4a6168;margin:2px 0 0}'
       + '.fbf-sol-rating{display:flex;align-items:center;justify-content:space-between;'
       +   'gap:10px;flex-wrap:wrap;margin:12px 0 4px;padding:10px 12px;background:#fff;border-radius:2px}'
@@ -296,7 +301,7 @@
       + '.fbf-sol-win.minor{border-left-color:' + CORAL + '}'
       + '.fbf-sol-win.active{box-shadow:0 0 0 2px ' + TEAL + ';background:#effaf6}'
       + '.fbf-sol-win .wl{flex:1;min-width:0}'
-      + '.fbf-sol-win .wt{font-weight:800;font-size:1.02em;white-space:nowrap}'
+      + '.fbf-sol-win .wt{font-weight:800;font-size:1.02em;white-space:nowrap;color:' + NAVY + '}'
       + '.fbf-sol-win .wk{font-size:.8em;color:#4a6168}'
       + '.fbf-sol-badge{font-size:.68em;font-weight:800;letter-spacing:.04em;text-transform:uppercase;'
       +   'padding:3px 8px;border-radius:999px;white-space:nowrap}'
