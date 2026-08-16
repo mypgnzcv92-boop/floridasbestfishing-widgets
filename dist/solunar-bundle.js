@@ -311,7 +311,10 @@
       + '.fbf-sol-badge.next{background:' + SAND + ';color:' + NAVY + ';border:1px solid #d6cfc2}'
       + '.fbf-sol-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;'
       +   'flex-wrap:wrap;margin-top:12px;font-size:.82em;color:#4a6168}'
-      + '.fbf-sol .fbf-sol-foot a{color:' + TEAL + ';font-weight:700;text-decoration:underline}'
+      // !important is required, not cosmetic: the homepage wrapper sets
+      // `.fbf-bite a{color:var(--fbf-brass)!important}` for its dark section, which renders
+      // brass-on-white (2.1:1) inside this widget's light card. Ours is (0,2,1) so it wins.
+      + '.fbf-sol .fbf-sol-foot a{color:' + TEAL + '!important;font-weight:700;text-decoration:underline}'
       + '.fbf-sol .fbf-sol-foot a:hover{text-decoration:none}';
     var s = document.createElement('style');
     s.id = STYLE_ID; s.textContent = css;
