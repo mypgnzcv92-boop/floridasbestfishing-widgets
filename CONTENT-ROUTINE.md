@@ -1,90 +1,202 @@
 # FBF Content Routine
 
-The operating routine for publishing on floridasbestfishing.com. Updated 2026-07-10 to
-reflect the shift from high-volume bursts to complete, monetized clusters.
+The operating routine for publishing on floridasbestfishing.com.
 
-## The shift (why this changed)
-The site launched fast — ~43 posts in the first 20 days (~15/week), but publishing outran
-monetization and internal linking (gear ~13% of posts, no conversion tracking, inconsistent
-affiliate links). Verified findings:
-- **Publishing *frequency* is not penalized** — it's neither a spam signal nor a ranking factor.
-- **But the helpful-content signal is sitewide** — a batch of thin, orphaned, unmonetized posts
-  drags down the *whole* low-authority domain, and a new site can't get 15/week indexed quickly
-  anyway (much sits in "Discovered – currently not indexed").
-- So the goal isn't "publish less" for its own sake — it's **stop shipping incomplete posts.**
-  Once every post must clear the gate below, a solo operator naturally lands well under 15/week.
-- Best asset right now: **nothing ranks yet.** Fix everything before traffic/revenue is at stake.
+- 2026-07-10 — shifted from high-volume bursts to complete, monetized clusters.
+- **2026-08-15 — full site rebuild (design + IA + trust layer). Sections 1 and 2 below are new
+  and change what "complete" means. Read them before publishing anything.**
 
-## Cadence
-- **Phase 0 — Retrofit sprint (now, ~2 weeks):** near-freeze net-new (0–2/wk). Pay down completeness
-  debt on the existing ~46 (monetize + interlink). *Done: lobster (310), scallop (309). Next:
-  red snapper, gag grouper, snook, the 3 charter reviews, region-page charter CTAs.*
-- **Phase 1 — Weekly complete-cluster cycle (~5-day rhythm):** each cycle ships ONE finished cluster:
-  - Day 1: pillar (a species guide or region hub — publish/upgrade first so spokes link up to it)
-  - Days 2–4: ~3 spokes (a how-to + a gear post + a seasonal/charter piece), each interlinked *at publish*
-  - Day 5: wire & QA (add downward links from pillar + 2–3 older posts; orphan check; run the gate)
-  - **Actual cadence (William, 2026-07-10): 1–2 complete posts every ~4 days (≈2–3/week).** The scheduled
-    "FBF Content Strategist" agent runs **every 4 days** (was every 2). A full cluster therefore builds over
-    ~2 cycles — that's fine. Provisional — re-review against GSC indexing/impressions in ~6–8 weeks and tune.
-- **New vs refresh split:** sprint ~10/90 → months 1–3 ~75/25 → months 4–6 ~65/35 → mature 50/50.
+---
 
-## Publish gate — a post ships ONLY when all are true
-**Intent & depth**
-- [ ] Primary keyword in title, H1, first ~100 words; intent matches (info vs commercial)
-- [ ] Meta description set (Rank Math); covers the topic deeper than the current ranking pages
-**Internal links (the #1 historical gap)**
-- [ ] 3–5 contextual in-body links; spoke links UP to its pillar; pillar + 2–3 older posts link DOWN (no orphans day one)
-- [ ] Links to the relevant region page / offshore hub where applicable
-- [ ] ≥1 link to a **money page** (gear or charter) from every informational post
-**Monetization & compliance** (see standards below)
-- [ ] Amazon links = direct product, **uncloaked**, disclosed; FishingBooker = cloaked `/go/`
-- [ ] Gear box where intent supports it; FishingBooker CTA on species/region/charter posts
-- [ ] Disclosure present (auto, sitewide, bottom); relevant widget embedded via deploy.py if it fits
-**Schema & E-E-A-T**
-- [ ] Article/Product schema; author byline; **first-hand signals** (named spots, dates, conditions) — our real edge
-**Media/technical**
-- [ ] Original compressed (WebP) images w/ alt text; indexable; mobile-OK
+# 1. SITE MAP — what the site looks like now
 
-## Link & monetization standards (updated per Amazon ToS verification 2026-07-10)
-- **Amazon = UNCLOAKED, direct product links.** Amazon's Linking Requirements forbid presenting a
-  link so it's unclear it goes to Amazon; a `/go/` cloak hides the destination on hover → non-compliant
-  (material breach → possible commission forfeiture). The visible link must resolve to `amazon.com`.
-  Implement via **ThirstyAffiliates Uncloak module** (preferred — keeps link management + click
-  analytics while showing the raw URL) or plain `amazon.com/dp/<ASIN>?tag=floridasbestf-20` links.
-  Hybrid: direct ASIN on money pages (gear reviews + seasonal); search URLs OK only for casual mentions.
-- **FishingBooker (and any program that permits it) = cloaked `/go/` + tracked.** Highest-value CTA on
-  charter/region/species posts. (Plan: FISHINGBOOKER-PLAN.md.)
-- **Disclosure:** auto-appended to the **bottom** of every monetized post/page, incl. the required
-  "As an Amazon Associate we earn from qualifying purchases" + FTC line. Class `fbf-disclosure`.
-- **Tracking (LIVE 2026-07-10):** a site-wide GeneratePress hook (element **341**, `wp_footer`, Entire
-  Site) fires GA4 **`affiliate_click`** on every `/go/` click (covers Amazon-while-cloaked + FishingBooker)
-  and **`newsletter_signup`** on `form.fbf-signup-form` submit — confirmed live in GA4 Realtime. No
-  per-post tracking work needed. ⚠️ **Site Kit excludes logged-in WP users** (`trackingDisabled:
-  ['loggedinUsers']`) — always **test in an Incognito window**, or your own visits won't record. GA4
-  property `526263364` / measurement `G-KZFFMC05TL`. When Amazon links are uncloaked, GA4
-  Enhanced-Measurement outbound-click tracking also catches them.
+The rebuild added hub pages and a real information architecture. **New content is not finished
+until it is wired into these hubs** — that is the single biggest change to the routine.
 
-## Cluster build order (topical authority)
-Finish one cluster (pillar + spokes + full interlink + orphan check) before starting the next.
-Priority clusters map to the strongest existing assets + seasonal demand:
-1. **Snook** (guide → best snook rod/reel, leader, night-snook how-to → Tampa Bay/IRL regions)
-2. **Redfish** (guide → best redfish lures/spoons, gold-spoon how-to → Mosquito Lagoon/IRL)
-3. **Seatrout** (guide → trout lures + popping corks)
-4. **Tarpon** (guide → complete the existing rods/reels post with a leader post; mullet-run tie-in)
-5. **Snapper/Grouper bottom** (mangrove/yellowtail/mutton + grouper → bottom rod/reel, rigs, descending device → offshore hub)
-Seasonal overlay (publish/refresh on lead time): mullet run (early-Aug), pompano/surf (mid-Sep),
-stone crab (~Oct 1), sheepshead (~Nov 1). See the FWC seasonal calendar in memory.
+## Navigation (menu id 7)
 
-## 4-week example
-| Week | Cluster | Ships (all gated) | Backfill/refresh |
+`Species ▾ · Regions ▾ · Reports · Gear · Tools · Charters · About · Contact`
+
+"Home" was removed (the logo links home). "Blog" was retired and became "Reports".
+
+## Pages that must be kept current
+
+| Page | ID | Slug | What it is | When you must touch it |
+|---|---|---|---|---|
+| Home | 12 | `/` | Hero → Today's Bite (live solunar) → Latest Guides → Tools → Regions → signup | **Never manually** — Latest Guides auto-populates via `[fbf_latest]` |
+| Species hub | 596 | `/species/` | All species guides, grouped Inshore / Flats / Surf / Nearshore / Offshore | **Every time a species guide publishes** |
+| Regions hub | 597 | `/regions/` | 11 regions grouped Atlantic / Keys / Gulf / Offshore | When a region page is added |
+| Reports hub | 659 | `/reports/` | Live conditions + latest written reports + season openers | Auto-populates; edit only for season-opener links |
+| Tools hub | 298 | `/tools/` | Reg checker, What Should I Throw, Setup Matcher | When a widget is added |
+| About | 16 | `/about/` | Who writes it, what the site is and is not | Rarely |
+| How We Research | 658 | `/how-we-research/` | Sourcing methodology per content type | When sourcing practice changes |
+
+**Region pages (11):** Jacksonville 238 · Indian River Lagoon 234 · Mosquito Lagoon 230 ·
+Southeast 81 · Keys 79 · Everglades 242 · Charlotte Harbor 236 · Tampa Bay 77 ·
+Cedar Key 240 · Panhandle 83 · Offshore hub 273.
+
+**Categories:** Fishing Reports(1) · Gear Reviews(2) · Charter Reviews(3) · How-To Guides(4) ·
+Species Guides(5).
+
+## Theme — `fbf-2026` (GeneratePress child)
+
+The old "Additional CSS" pile is gone. The theme now owns the design system, and several things
+the routine used to do by hand are automatic:
+
+- **Byline** — every post shows "By Captain" automatically. Do not write a byline into content.
+- **Table of contents** — auto-generated from the post's own `<h2>`s when there are **3 or more**.
+  IDs are added automatically. A guide with 2 H2s gets no TOC, which is usually a sign it is thin.
+- **Disclosure** — the theme tags the first paragraph starting "Disclosure"/"Affiliate disclosure"
+  with class `fbf-disclosure`. Write the line as a normal `<p>`; do not add the class by hand.
+- **Article layout** — posts are full-width with a sticky TOC rail. No sidebar on posts.
+- **Archives** — category pages render as a card grid automatically.
+- **Footer** — links About / How We Research / Species / Regions / Tools / Contact / Privacy.
+
+**Design tokens** (use these if you ever inline a colour): navy `#0B2A3C`, deep `#0F3A50`,
+bone `#F4EFE6`, rule `#E0D6C4`, brass `#C9A24B`, brass-for-text `#8A6D24`, steel `#7E909A`,
+ink `#16232C`. **Never** use the retired teal `#0D9488`, coral `#E8634A` or pastel sand `#F5F0E8` —
+a site-wide migration removed all of them and reintroducing one is a visible regression.
+⚠️ Plain brass on bone is ~2:1 contrast — never put body text in `#C9A24B`.
+
+Fonts: **Bevan** (display/H1), **Sanchez** (H2/H3), **Source Serif 4** (body), **Cinzel** (labels,
+nav, eyebrows). All self-hosted in the theme; no Google Fonts request.
+
+## Widgets (4 live)
+
+| Key | Marker | Mount | Presets |
 |---|---|---|---|
-| 1 | Retrofit sprint | 0–2 new | red snapper season-pivot + bottom gear; gag grouper; snook season |
-| 2 | Retrofit sprint | 0–2 new | 3 charter reviews (+FishingBooker); region-page charter CTAs; uncloak Amazon links |
-| 3 | **Snook** | snook rod/reel · snook leader · night-snook refresh (pillar=snook guide) | wire 2–3 older posts → snook cluster |
-| 4 | **Redfish** + mullet-run | redfish lures · gold-spoon how-to · **mullet-run evergreen** (seasonal) | wire redfish guide + regions |
+| `regs` | `FBF:regs` | `data-fbf-regs data-species` | 19 species keys in `lib/regs.js` |
+| `throw` | `FBF:throw` | `data-fbf-throw data-species` | snook, redfish, seatrout, tarpon, flounder, sheepshead, black-drum, jack-crevalle, spanish-mackerel, mangrove-snapper |
+| `setup` | `FBF:setup` | `data-fbf-setup data-scenario` | beginner, inshore-allround, big-snook, nearshore, offshore-bottom, offshore-troll, pier, surf, tarpon |
+| `solunar` | `FBF:solunar` | `data-fbf-solunar data-region` | region keys from `lib/regions.js` |
 
-## Open/uncertain
-- Exact posts/week is a guardrail, not a law — the gate wins; never push back toward 15 unless every
-  post clears the bar.
-- Amazon uncloak: enable the ThirstyAffiliates module (may need the wp-admin Modules screen) — **parked** (William deferred 2026-07-10). Until then, Amazon links stay cloaked `/go/` and are tracked by the `affiliate_click` listener.
-- Conversion tracking is **LIVE** (see Tracking above). Only remaining GA4 step: **star** `affiliate_click` + `newsletter_signup` as Key events once they clear GA4's processing lag into Admin → Data display → Events → Recent events.
+⚠️ **Loader URLs carry a content hash** (`?v=<sha1[:8]>`). jsDelivr caches bundles for **7 days in
+the visitor's browser**, so a content change alone never reaches returning visitors. Always
+`build.py` → commit → push → purge jsDelivr → `deploy.py`. Never hand-write a loader without `?v=`.
+
+---
+
+# 2. HONESTY STANDARD (new, non-negotiable)
+
+The pre-rebuild About page claimed a team of anglers who booked every charter and tested every rod.
+None of it was true. Beyond credibility, **claiming hands-on testing you have not done is an FTC
+endorsement-guidelines problem on affiliate content.**
+
+- **Never invent first-hand experience.** Not a trip, not a test, not a charter, not a catch.
+- First-hand detail is still the site's edge — but only where it is real. Where a recommendation is
+  research-led, write it as research-led. `/how-we-research/` promises exactly this; contradicting
+  it on a post is worse than never having written it.
+- **Never fabricate a charter review of a real business.**
+- Regulations carry a **verified date**. If you cannot verify a limit against FWC this run, do not
+  publish the number.
+- The old gate line "first-hand E-E-A-T signals (named spots, dates, conditions)" is **retired** —
+  it invited exactly this failure. Replaced by the gate item below.
+
+---
+
+# 3. Cadence
+
+**1–2 COMPLETE posts per run, every ~4 days (≈2–3/week).** Quality over volume. Weight toward
+(a) retrofitting thin existing posts and (b) completing clusters, over new isolated posts. If no
+cluster-completing idea is worth a full draft, propose fewer — never filler.
+
+Frequency is not penalized, but on a low-authority domain a batch of thin, orphaned, unmonetized
+posts drags the whole site down (helpful-content is sitewide).
+
+**New vs refresh split:** months 1–3 ~75/25 → months 4–6 ~65/35 → mature 50/50.
+
+---
+
+# 4. PUBLISH GATE — a post ships only when all are true
+
+**Intent & depth**
+- [ ] Focus keyword in title, H1, first ~100 words; intent matches (info vs commercial)
+- [ ] Rank Math meta description set; goes deeper than the pages currently ranking
+- [ ] **3+ H2s** (also what earns the auto-TOC — fewer usually means it is thin)
+
+**Internal links — the #1 historical gap**
+- [ ] 3–5 contextual in-body links; spoke links UP to its pillar; pillar + 2–3 older posts link DOWN
+- [ ] Link to the relevant region page / offshore hub
+- [ ] ≥1 link to a money page (gear or charter) from every informational post
+
+**⭐ Hub wiring — NEW, and the easiest thing to forget**
+- [ ] **Species guide → add a card to the `/species/` hub (596)** in the right group, or the hub
+      silently goes stale and the guide is orphaned from the main nav path
+- [ ] Region page → add to `/regions/` hub (597) **and** the Regions nav dropdown
+- [ ] Season/opener post → consider linking it from the `/reports/` hub opener list
+
+**⭐ Regulations — NEW**
+- [ ] Any post stating a size/bag/season → the number is verified against myfwc.com **this run**
+- [ ] Species is present in `lib/regs.js`; if not, add it (with `verified` date) and rebuild
+- [ ] Deploy the `regs` widget to the post preset to that species
+
+**Monetization & compliance**
+- [ ] Amazon = direct product link, disclosed (see standards below); FishingBooker = cloaked `/go/`
+- [ ] Gear box or charter CTA where intent supports it
+- [ ] Disclosure line present as a plain `<p>` (theme classes it)
+- [ ] Relevant widget deployed via `deploy.py` where it genuinely fits
+
+**Honesty & schema**
+- [ ] **No invented first-hand claims** (§2). Real experience welcome; manufactured experience never
+- [ ] BlogPosting schema clean (empty-string schema-clear via `rankmath/v1/updateMeta`)
+
+**Media/technical**
+- [ ] Credibly-Florida image or none (photo rule below); alt text; mobile-OK
+- [ ] Non-empty marketing excerpt (a blank excerpt makes WP show the disclosure line in previews)
+
+---
+
+# 5. Link & monetization standards
+
+- **Amazon = UNCLOAKED, direct product links.** Amazon's Linking Requirements forbid obscuring the
+  destination; a `/go/` cloak hides it on hover → non-compliant. Use ThirstyAffiliates' Uncloak
+  module or plain `amazon.com/dp/<ASIN>?tag=floridasbestf-20`. Direct ASIN on money pages; search
+  URLs only for casual mentions. ⚠️ The uncloak switch is **parked** (William deferred 2026-07-10) —
+  until then Amazon stays `/go/` and is tracked.
+- **FishingBooker = cloaked `/go/` permanently.** Highest-value CTA on charter/region/species posts.
+- **Disclosure:** bottom of every monetized post, including the Amazon Associate statement + FTC line.
+- **Tracking is LIVE:** a site-wide GP hook (element 341) fires GA4 `affiliate_click` on `/go/`
+  clicks and `newsletter_signup` on the signup form. ⚠️ Site Kit excludes logged-in users — test in
+  Incognito. GA4 property `526263364` / `G-KZFFMC05TL`.
+
+# 6. Photo credibility rule (unchanged, still binding)
+
+Never use an image with non-Florida tells — mountains or hills on the horizon, rocky or cold
+coastlines, snow, pine forest, non-FL landmarks. Florida is flat and subtropical and anglers spot a
+fake instantly. Prefer ambiguous-but-plausibly-Florida shots. **If you cannot find a credible one,
+publish with no photo.** Anything borderline: show William with the specific reason and let him call
+it — never decide unilaterally.
+
+# 7. Cluster build order
+
+Finish one cluster (pillar + spokes + full interlink + orphan check) before starting the next.
+Snook → Redfish → Seatrout → Tarpon → Snapper/Grouper-bottom.
+Seasonal overlay on lead time: mullet run (early-Aug), pompano/surf (mid-Sep), stone crab (~Oct 1),
+sheepshead (~Nov 1), **Gulf gag grouper opener (Sep 1 — short window, high value)**.
+
+# 8. Publishing mechanics
+
+1. `POST wp/v2/posts` — title, slug, status, categories, HTML, **non-empty excerpt**.
+   Send a browser User-Agent on every REST call or Cloudflare 403s ("error code 1010").
+2. Schema clear: `POST rankmath/v1/updateMeta {rank_math_rich_snippet:"", rank_math_snippet_article_type:""}`
+   (empty strings → inherits BlogPosting; setting "article"/"off" breaks the graph).
+3. SEO meta via the same route (focus keyword + description).
+4. Featured image upload + assign (or skip per the photo rule).
+5. **Wire the hubs** (§4).
+6. **Widgets:** add the post id to the `DEPLOY` dict in `deploy.py`, then `python3 deploy.py <widget>`.
+   If a bundle changed: `build.py` → commit → push → purge jsDelivr → `deploy.py`.
+7. **Cache flush:** `POST /wp-json/fbf/v1/flush-cache` with the App Password — purges GoDaddy *and*
+   the Cloudflare edge. `deploy.py` already calls it at the end of every run.
+   ⚠️ HTML is served with a 31-day browser `max-age` set by GoDaddy's gateway (not changeable from
+   PHP), so *your own browser* may hold a stale copy — hard-refresh before reporting a problem.
+   To check whether something is genuinely broken or just cached, request it with `?v=<random>`.
+8. **Sitemap: nothing to do.** Rank Math's sitemap cache is disabled in the mu-plugin.
+9. Verify live: meta description, ~3–4KB BlogPosting JSON-LD, excerpt on the homepage grid.
+
+# 9. Open / uncertain
+
+- Posts-per-week is a guardrail, not a law — the gate wins.
+- Amazon uncloak: parked pending William.
+- GA4: star `affiliate_click` + `newsletter_signup` as Key events once they clear processing lag.
+- `lib/regs.js` covers 19 species. Pompano's FWC page 404s under the obvious slug (it lives on the
+  permit page). Adding species is cheap — do it when a guide needs one.
