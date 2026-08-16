@@ -99,6 +99,7 @@ DEPLOY = {
             ('posts', 550, 'surf'), ('posts', 551, 'surf'),  # added 2026-07-29 (surf beginners PILLAR, whiting spoke)
             ('posts', 560, 'nearshore'),  # added 2026-08-04 (bull redfish fall run — passes/jetties)
             ('posts', 579, 'tarpon'),  # added 2026-08-13 (tarpon leader gear post — tarpon cluster)
+            ('posts', 829, 'offshore-bottom'),  # grouper tackle guide (2026-08-16)
         ],
     },
     'regs': {  # "Is it in season?" FWC size/bag checker -> reg-sensitive guides + tools hub
@@ -118,6 +119,7 @@ DEPLOY = {
             ('posts', 530, 'mangrove-snapper'), ('posts', 301, 'mangrove-snapper'),
             ('posts', 319, 'yellowtail-snapper'), ('posts', 332, 'mutton-snapper'),
             ('posts', 172, 'red-snapper'), ('posts', 302, 'red-snapper'),
+            ('posts', 829, 'gag-grouper'),  # grouper tackle guide (2026-08-16)
         ],
     },
 }
