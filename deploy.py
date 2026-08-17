@@ -68,6 +68,7 @@ DEPLOY = {
             ('posts', 561, 'redfish'),  # added 2026-08-04 (best redfish lures gear post)
             ('posts', 567, 'seatrout'),  # added 2026-08-08 (best seatrout lures gear post)
             ('posts', 576, 'seatrout'),  # added 2026-08-13 (popping cork how-to — seatrout cluster spoke)
+            ('posts', 1323, 'spanish-mackerel', 'keep'),  # bluefish/Spanish surf guide (2026-08-16) — sits in the lure section
             # region pages — preset to each region's signature inshore species, placed by the gear section
             ('pages', 238, 'redfish', GEAR), ('pages', 234, 'snook', GEAR),
             ('pages', 230, 'redfish', GEAR), ('pages', 81, 'snook', GEAR),
@@ -122,6 +123,8 @@ DEPLOY = {
             ('posts', 829, 'gag-grouper', 'keep'),  # grouper tackle guide (2026-08-16) — authors its own placement
             ('posts', 1290, 'mullet', 'keep'),  # cast net guide (2026-08-16) — widget sits inside its own bite band
             ('posts', 501, 'snook', 'keep'),  # mullet run pillar — was hand-placed and unmanaged until 2026-08-16
+            ('posts', 1323, 'bluefish@atlantic', 'keep'),  # bluefish/Spanish surf guide (2026-08-16) — inside its own bite band
+            ('posts', 315, 'spanish-mackerel'),  # retrofit 2026-08-16 — possible once spanish-mackerel entered lib/regs.js
         ],
     },
 }
