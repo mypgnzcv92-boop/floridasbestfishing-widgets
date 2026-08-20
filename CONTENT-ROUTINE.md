@@ -178,9 +178,13 @@ it — never decide unilaterally.
 
 Finish one cluster (pillar + spokes + full interlink + orphan check) before starting the next.
 Snook → Redfish → Seatrout → Tarpon → Snapper/Grouper-bottom.
-Seasonal overlay on lead time: mullet run (early-Aug), pompano/surf (mid-Sep),
-**stone crab (season Oct 15 – May 1, FWC-verified 2026-08-16 — publish by ~Oct 1)**,
-sheepshead (~Nov 1), **Gulf gag grouper opener (Sep 1 — short window, high value)**.
+Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
+- ✅ **mullet run** (early-Aug) — pillar 501 refreshed + cast-net spoke 1290, 2026-08-16
+- ✅ **pompano / surf** (mid-Sep) — surf cluster completed 2026-07-29 (550, 551, 537, 320)
+  and the fall-blitz spoke 1323 landed 2026-08-16
+- **Gulf gag grouper opener — Sep 1.** Short window, high value. Nearest live trigger
+- **Stone crab** — season Oct 15 – May 1 (FWC-verified 2026-08-16), publish by ~Oct 1
+- **Sheepshead** — ~Nov 1
 
 ## 7.1 NEXT UP — the queue (set 2026-08-16)
 
