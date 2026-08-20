@@ -194,9 +194,15 @@ verified against all 60 published posts on 2026-08-16 — **none of these exists
 | 5 | **Cleaning, Filleting & Cooking Your Catch** | evergreen | Strong evergreen traffic and unusually good gear attachment (knives, boards, vacuum sealers, coolers) |
 | 6 | **Fishing Knots That Actually Matter** | evergreen | Enormous volume, weak direct monetization, but the best internal-link glue available — every gear and species post can point at it |
 
-**Blocked on affiliate approvals, not on writing:** the high-AOV gear posts (optics, technical
-apparel, coolers, electronics). Writing a Costa post monetized at Amazon's 3% wastes the asset —
-sequence those after AvantLink/CJ approval.
+**High-AOV gear posts (optics, technical apparel, coolers, electronics) — a judgment call, NOT
+blocked.** ⚠️ Corrected 2026-08-17: an earlier version of this line said to "sequence those after
+AvantLink/CJ approval." **There is no pending approval to wait for.** AvantLink rejected the June
+2026 application on traffic, and William has PAUSED all affiliate signups — so **Amazon Associates
+and FishingBooker are the only live programs**, and holding these posts for a specialist network
+shelves them indefinitely. Decide each on merit: write it now monetized at Amazon if the topic earns
+traffic on its own, or skip it if the only reason to write it was the higher commission. Do not
+record it as "blocked." See the `reference_affiliate_networks_roster` memory before assuming any
+network carries a brand.
 
 # 8. Publishing mechanics
 
