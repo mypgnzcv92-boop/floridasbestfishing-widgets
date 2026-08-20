@@ -2,6 +2,9 @@
 
 The operating routine for publishing on floridasbestfishing.com.
 
+**This doc is the single source of truth.** The `ffb-content-strategist` scheduled task defers to it
+and deliberately does not restate it — when the routine changes, edit this file, not the task.
+
 - 2026-07-10 — shifted from high-volume bursts to complete, monetized clusters.
 - **2026-08-15 — full site rebuild (design + IA + trust layer). Sections 1 and 2 below are new
   and change what "complete" means. Read them before publishing anything.**
