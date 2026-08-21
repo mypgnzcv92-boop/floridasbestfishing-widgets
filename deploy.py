@@ -209,10 +209,18 @@ def insert_at(cleaned, block, anchor):
             return cleaned[:pos] + block + '\n\n' + cleaned[pos:], f'before "{anchor[1]}"'
         anchor = 'before-h2'  # fall through
     if anchor == 'after-tide':
-        i = cleaned.find('<!-- /wp:html -->')
+        # The tide card is itself a marker-wrapped loader now, so land AFTER its end
+        # marker — inserting after the first </wp:html> would nest this block inside
+        # the tide markers, and the next tide run would silently delete it.
+        i = cleaned.find('<!-- FBF:tide:end -->')
+        if i != -1:
+            cut = i + len('<!-- FBF:tide:end -->')
+            # normalise the surrounding blank lines so a re-run is byte-identical
+            return cleaned[:cut] + '\n\n' + block + '\n\n' + cleaned[cut:].lstrip('\n'), 'after tide widget'
+        i = cleaned.find('<!-- /wp:html -->')   # a page that never had the tide card
         if i != -1:
             cut = i + len('<!-- /wp:html -->')
-            return cleaned[:cut] + '\n\n' + block + '\n' + cleaned[cut:], 'after tide widget'
+            return cleaned[:cut] + '\n\n' + block + '\n' + cleaned[cut:], 'after first html block'
     if anchor == 'after-p':
         m = re.search(r'</p>', cleaned)
         if m:
