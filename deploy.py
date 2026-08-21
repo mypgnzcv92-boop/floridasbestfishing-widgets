@@ -11,7 +11,8 @@ upserts the loader between <!-- FBF:<marker>:start --> ... :end --> markers.
   python3 deploy.py solunar --dry-run    # preview, write nothing
 
 A target is (rest_type, id, preset[, anchor]). Anchor (per-target, else widget
-default): 'after-tide' | 'before-h2' | 'after-p' | 'append' | ('before-text', T).
+default): 'after-tide' | 'before-h2' | 'after-p' | 'append' | ('before-text', T)
+| 'keep' (post authors its own placement) | 'replace-legacy-tide' (tide only).
 
 Requires .env: WP_USERNAME, WP_APP_PASSWORD, WP_URL
 """
@@ -43,16 +44,28 @@ AUTH = 'Basic ' + base64.b64encode(f'{WP_USER}:{WP_PASS.replace(" ", "")}'.encod
 
 GEAR = 'gear-section'  # region-page: before the gear-section heading (any era), else after solunar
 
+REGION_PAGES = [
+    ('pages', 238, 'jacksonville-ne-florida'), ('pages', 234, 'indian-river-lagoon'),
+    ('pages', 230, 'mosquito-lagoon'), ('pages', 81, 'southeast-coast'),
+    ('pages', 79, 'florida-keys'), ('pages', 242, 'everglades-flamingo'),
+    ('pages', 236, 'charlotte-harbor-boca-grande'), ('pages', 77, 'tampa-bay'),
+    ('pages', 240, 'cedar-key-nature-coast'), ('pages', 83, 'panhandle'),
+]
+
 DEPLOY = {
+    'tide': {  # live NOAA tides -> the 10 region pages, in the slot the old inline script occupied
+        # Runs FIRST: the solunar anchor below is "after the first wp:html block", i.e. after this one.
+        'marker': 'tide', 'template': 'dist/tide-block.template.html',
+        'placeholder': '{{REGION}}', 'anchor': 'replace-legacy-tide',
+        'targets': list(REGION_PAGES),
+    },
     'solunar': {
         'marker': 'solunar', 'template': 'dist/solunar-block.template.html',
         'placeholder': '{{REGION}}', 'anchor': 'after-tide',
-        'targets': [
-            ('pages', 238, 'jacksonville-ne-florida'), ('pages', 234, 'indian-river-lagoon'),
-            ('pages', 230, 'mosquito-lagoon'), ('pages', 81, 'southeast-coast'),
-            ('pages', 79, 'florida-keys'), ('pages', 242, 'everglades-flamingo'),
-            ('pages', 236, 'charlotte-harbor-boca-grande'), ('pages', 77, 'tampa-bay'),
-            ('pages', 240, 'cedar-key-nature-coast'), ('pages', 83, 'panhandle'),
+        'targets': list(REGION_PAGES) + [
+            # hand-placed inside the "bite" bands at the 2026-08-15 rebuild; markers were already there
+            ('pages', 12, 'tampa-bay', 'keep'),   # homepage "Today's Bite"
+            ('pages', 659, 'tampa-bay', 'keep'),  # reports hub "Conditions Right Now"
         ],
     },
     'throw': {  # "What should I throw?" -> species guides + topwater post + ALL 10 region pages
@@ -168,7 +181,17 @@ def flush_cache():
         return False
 
 
+# The inline NOAA tide card the region pages carried from 2026-06-21 until the
+# 2026-08-15 rebuild re-saved them unslashed and broke its script. One wp:html
+# block, one <script>, adjacent to the opening comment.
+LEGACY_TIDE = re.compile(r'<!-- wp:html -->\s*<div class="fbf-tide-widget"[^>]*>.*?</script>\s*<!-- /wp:html -->', re.S)
+
 def insert_at(cleaned, block, anchor):
+    if anchor == 'replace-legacy-tide':
+        m = LEGACY_TIDE.search(cleaned)
+        if m:
+            return cleaned[:m.start()] + block + cleaned[m.end():], 'replaced legacy tide block'
+        anchor = 'before-h2'  # nothing to replace (never had the card) — fall through
     if anchor == 'gear-section':
         m = re.search(r'<h[23][^>]*>[^<]{0,30}[Gg]ear', cleaned)
         if m:
@@ -209,11 +232,13 @@ def upsert(content, block, marker, anchor):
     # the widget on every run — which silently hoists hand-placed widgets out of
     # the section they were written into. Use 'keep' for any post whose body was
     # written with the markers already in the right spot.
-    if anchor == 'keep':
+    # 'replace-legacy-tide' is a keep-variant: first deploy swaps the legacy inline
+    # card for the loader, every later run refreshes the loader where it sits.
+    if anchor in ('keep', 'replace-legacy-tide'):
         m = pat.search(content)
         if m:
             return content[:m.start()] + '\n' + block + '\n' + content[m.end():], 'kept in place'
-        return insert_at(content, block, 'before-h2')   # first deploy: place it sensibly
+        return insert_at(content, block, 'before-h2' if anchor == 'keep' else anchor)   # first deploy
 
     return insert_at(pat.sub('', content), block, anchor)
 

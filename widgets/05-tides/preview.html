@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FBF · Live NOAA Tides — preview</title>
+<style>
+  body { font-family: Georgia, serif; background: #fbfaf7; color: #0B2A3C; margin: 0; padding: 32px 20px; }
+  .wrap { max-width: 620px; margin: 0 auto; }
+  h1 { font-size: 20px; font-weight: 800; margin: 0 0 4px; }
+  .note { font-size: 13px; color: #6b7d82; margin: 0 0 20px; }
+  .bite { background: #0B2A3C; color: #F4EFE6; padding: 18px 20px; border-radius: 2px; margin: 28px 0; }
+  .bite a { color: #C9A24B !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Live NOAA Tides — preview</h1>
+  <p class="note">Widget #5. Real NOAA fetch (needs network). Top card = fixed region as on a region page;
+  bottom card = the picker variant inside a dark "bite" band, as on the tools page (checks the colour guard).</p>
+
+  <div data-fbf-tide data-region="panhandle"></div>
+
+  <div class="bite">
+    <h2 style="margin:0 0 8px;font-size:18px">Tides, your region</h2>
+    <div data-fbf-tide data-region="tampa-bay" data-picker="1"></div>
+  </div>
+</div>
+
+<script src="../../lib/regions.js"></script>
+<script src="../../lib/tides.js"></script>
+<script src="./widget.js"></script>
+</body>
+</html>

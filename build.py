@@ -46,6 +46,12 @@ WIDGETS = {
         'widget': 'widgets/04-reg-checker/widget.js',
         'mount': '<div data-fbf-regs data-species="{{SPECIES}}" data-zone="{{ZONE}}"></div>',
     },
+    'tide': {
+        'marker': 'tide',
+        'libs': ['lib/regions.js', 'lib/tides.js'],
+        'widget': 'widgets/05-tides/widget.js',
+        'mount': '<div data-fbf-tide data-region="{{REGION}}"></div>',
+    },
 }
 
 def read(rel):

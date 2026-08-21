@@ -4,8 +4,12 @@
  * Self-contained: injects its own scoped <style>, no external CSS.
  *
  * Usage in a page:
- *   <div data-fbf-solunar data-region="tampa-bay"></div>
+ *   <div data-fbf-solunar data-region="tampa-bay"></div>                   fixed region
+ *   <div data-fbf-solunar data-region="tampa-bay" data-picker="1"></div>   region select, remembered
  * Auto-inits on load; or call FBFSolunarWidget.render(el, 'tampa-bay').
+ *
+ * Every region renders in ITS OWN zone (lib/regions.js `tz`) — the western
+ * Panhandle is Central. Never the visitor's zone.
  */
 (function (global) {
   'use strict';
@@ -59,18 +63,32 @@
       // `.fbf-bite a{color:var(--fbf-brass)!important}` for its dark section, which renders
       // brass-on-white (2.1:1) inside this widget's light card. Ours is (0,2,1) so it wins.
       + '.fbf-sol .fbf-sol-foot a{color:' + TEAL + '!important;font-weight:700;text-decoration:underline}'
-      + '.fbf-sol .fbf-sol-foot a:hover{text-decoration:none}';
+      + '.fbf-sol .fbf-sol-foot a:hover{text-decoration:none}'
+      // picker variant: a bone strip butted onto the top of the card
+      + '.fbf-sol-pick{display:flex;align-items:center;gap:10px;flex-wrap:wrap;max-width:560px;'
+      +   'margin:22px 0 0;padding:10px 12px;background:' + SAND + ';border:1px solid #e2e8e4;'
+      +   'border-bottom:0;border-radius:2px 2px 0 0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}'
+      + '.fbf-sol-pick label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4a6168}'
+      + '.fbf-sol-pick select{flex:1;min-width:180px;max-width:320px;padding:8px 10px;border:1px solid #d6cfc2;'
+      +   'border-radius:2px;background:#fff;font-size:15px;color:' + NAVY + '}'
+      + '.fbf-sol-haspick .fbf-sol{margin-top:0;border-radius:0 0 2px 2px}';
     var s = document.createElement('style');
     s.id = STYLE_ID; s.textContent = css;
     document.head.appendChild(s);
   }
 
-  var TZ = 'America/New_York';
-  var fmtTime = new Intl.DateTimeFormat('en-US', { timeZone: TZ, hour: 'numeric', minute: '2-digit' });
-  var fmtDate = new Intl.DateTimeFormat('en-US', { timeZone: TZ, weekday: 'short', month: 'short', day: 'numeric' });
+  var DEFAULT_TZ = 'America/New_York';
+  var fmts = {};
+  function fmtTimeFor(tz) {
+    return fmts['t' + tz] || (fmts['t' + tz] = new Intl.DateTimeFormat('en-US', { timeZone: tz, hour: 'numeric', minute: '2-digit' }));
+  }
+  function fmtDateFor(tz) {
+    return fmts['d' + tz] || (fmts['d' + tz] = new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday: 'short', month: 'short', day: 'numeric' }));
+  }
 
-  function range(a, b) {
+  function range(a, b, tz) {
     // "6:42 – 8:42 AM" (collapse the meridiem if both share it)
+    var fmtTime = fmtTimeFor(tz);
     var pa = fmtTime.formatToParts(a), pb = fmtTime.formatToParts(b);
     function mer(p) { for (var i = 0; i < p.length; i++) if (p[i].type === 'dayPeriod') return p[i].value; return ''; }
     var sa = fmtTime.format(a), sb = fmtTime.format(b);
@@ -93,12 +111,24 @@
     return r[0];
   }
 
-  function render(el, slug) {
-    if (!global.FBFSolunar) { el.textContent = 'Solunar engine not loaded.'; return; }
-    injectStyles();
-    var region = regionBySlug(slug || el.getAttribute('data-region'));
+  var STORE = 'fbf-region';
+  function remembered() { try { return global.localStorage.getItem(STORE); } catch (e) { return null; } }
+  function remember(slug) { try { global.localStorage.setItem(STORE, slug); } catch (e) { /* private mode */ } }
+  function fromQuery() {
+    var m = /[?&]region=([a-z0-9-]+)/i.exec(global.location.search || '');
+    return m ? m[1].toLowerCase() : null;
+  }
+  function hasRegion(slug) {
+    var r = (global.FBF_REGIONS || []);
+    for (var i = 0; i < r.length; i++) if (r[i].slug === slug) return true;
+    return false;
+  }
+
+  function draw(el, region) {
+    var tz = region.tz || DEFAULT_TZ;
+    var fmtTime = fmtTimeFor(tz), fmtDate = fmtDateFor(tz);
     var now = Date.now();
-    var data = global.FBFSolunar.getDayWindows(new Date(now), region.lat, region.lng, TZ);
+    var data = global.FBFSolunar.getDayWindows(new Date(now), region.lat, region.lng, tz);
 
     // tag active / next
     var nextIdx = -1;
@@ -115,7 +145,7 @@
         ? '<span class="fbf-sol-badge now">Biting now</span>'
         : (i === nextIdx ? '<span class="fbf-sol-badge next">Next up</span>' : '');
       return '<li class="fbf-sol-win ' + w.type + (w._active ? ' active' : '') + '">'
-        + '<div class="wl"><div class="wt">' + range(w.start, w.end) + '</div>'
+        + '<div class="wl"><div class="wt">' + range(w.start, w.end, tz) + '</div>'
         + '<div class="wk">' + kind + ' · ' + esc(note) + '</div></div>'
         + badge + '</li>';
     }).join('');
@@ -132,11 +162,48 @@
       + '<ul class="fbf-sol-list">' + rows + '</ul>'
       + '<div class="fbf-sol-foot">'
       +   '<span>☀ ' + fmtTime.format(data.sun.sunrise) + '–' + fmtTime.format(data.sun.sunset)
-      +     ' · all times ET · solunar model</span>'
+      +     ' · all times ' + esc(region.tzLabel || 'ET') + ' · solunar model</span>'
       +   '<a href="' + SITE + region.slug + '/">Plan a trip →</a>'
       + '</div></div>';
 
     el.innerHTML = html;
+  }
+
+  function render(el, slug) {
+    if (!global.FBFSolunar) { el.textContent = 'Solunar engine not loaded.'; return; }
+    injectStyles();
+    if (!el.hasAttribute('data-picker')) {
+      draw(el, regionBySlug(slug || el.getAttribute('data-region')));
+      return;
+    }
+    // picker variant: the select is built once and survives the minute ticker; only the card redraws
+    var card = el.querySelector('.fbf-sol-card');
+    if (!card) {
+      var q = fromQuery(), mem = remembered();
+      var initial = hasRegion(q) ? q : (hasRegion(mem) ? mem : (slug || el.getAttribute('data-region')));
+      el.className += (el.className ? ' ' : '') + 'fbf-sol-haspick';
+      var wrap = document.createElement('div'); wrap.className = 'fbf-sol-pick';
+      var lab = document.createElement('label'); lab.textContent = 'Region';
+      var sel = document.createElement('select');
+      sel.id = 'fbf-sol-sel-' + Math.floor(Math.random() * 1e6); lab.htmlFor = sel.id;
+      (global.FBF_REGIONS || []).forEach(function (r) {
+        var o = document.createElement('option');
+        o.value = r.slug; o.textContent = r.name;
+        if (r.slug === initial) o.selected = true;
+        sel.appendChild(o);
+      });
+      card = document.createElement('div'); card.className = 'fbf-sol-card';
+      sel.addEventListener('change', function () {
+        remember(sel.value);
+        el.setAttribute('data-region', sel.value);
+        draw(card, regionBySlug(sel.value));
+      });
+      wrap.appendChild(lab); wrap.appendChild(sel);
+      el.innerHTML = '';
+      el.appendChild(wrap); el.appendChild(card);
+      el.setAttribute('data-region', regionBySlug(initial).slug);
+    }
+    draw(card, regionBySlug(el.getAttribute('data-region')));
   }
 
   function autoInit() {
