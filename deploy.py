@@ -102,6 +102,7 @@ DEPLOY = {
             ('posts', 579, 'tarpon'),  # added 2026-08-13 (tarpon leader gear post — tarpon cluster)
             ('posts', 829, 'offshore-bottom', 'keep'),  # grouper tackle guide (2026-08-16) — authors its own placement
             ('posts', 1387, 'pier', 'keep'),  # pier fishing PILLAR (2026-08-20) — first target for the 'pier' preset
+            ('posts', 1458, 'inshore-allround', 'keep'),  # saltwater knots guide (2026-08-21) — sits in the leader-sizing section
         ],
     },
     'regs': {  # "Is it in season?" FWC size/bag checker -> reg-sensitive guides + tools hub
@@ -127,6 +128,7 @@ DEPLOY = {
             ('posts', 1323, 'bluefish@atlantic', 'keep'),  # bluefish/Spanish surf guide (2026-08-16) — inside its own bite band
             ('posts', 315, 'spanish-mackerel'),  # retrofit 2026-08-16 — possible once spanish-mackerel entered lib/regs.js
             ('posts', 1387, 'sheepshead', 'keep'),  # pier fishing pillar (2026-08-20) — widget sits in its own regs section
+            ('posts', 1459, 'mangrove-snapper', 'keep'),  # fillet/cook guide (2026-08-21) — sits in the whole-condition section; reader switches species
         ],
     },
 }
