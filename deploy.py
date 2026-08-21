@@ -101,6 +101,7 @@ DEPLOY = {
             ('posts', 560, 'nearshore'),  # added 2026-08-04 (bull redfish fall run — passes/jetties)
             ('posts', 579, 'tarpon'),  # added 2026-08-13 (tarpon leader gear post — tarpon cluster)
             ('posts', 829, 'offshore-bottom', 'keep'),  # grouper tackle guide (2026-08-16) — authors its own placement
+            ('posts', 1387, 'pier', 'keep'),  # pier fishing PILLAR (2026-08-20) — first target for the 'pier' preset
         ],
     },
     'regs': {  # "Is it in season?" FWC size/bag checker -> reg-sensitive guides + tools hub
@@ -125,6 +126,7 @@ DEPLOY = {
             ('posts', 501, 'snook', 'keep'),  # mullet run pillar — was hand-placed and unmanaged until 2026-08-16
             ('posts', 1323, 'bluefish@atlantic', 'keep'),  # bluefish/Spanish surf guide (2026-08-16) — inside its own bite band
             ('posts', 315, 'spanish-mackerel'),  # retrofit 2026-08-16 — possible once spanish-mackerel entered lib/regs.js
+            ('posts', 1387, 'sheepshead', 'keep'),  # pier fishing pillar (2026-08-20) — widget sits in its own regs section
         ],
     },
 }

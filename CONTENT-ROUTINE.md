@@ -121,6 +121,19 @@ posts drags the whole site down (helpful-content is sitewide).
 - [ ] Rank Math meta description set; goes deeper than the pages currently ranking
 - [ ] **3+ H2s** (also what earns the auto-TOC — fewer usually means it is thin)
 
+**⭐ SEO hygiene — HARD limits (added 2026-08-20 after the Ahrefs audit; these WERE the sloppiness)**
+- [ ] **Rank Math SEO title ≤ 60 chars** — set it explicitly (`wp post meta update <id> rank_math_title`
+      or `rankmath/v1/updateMeta`): keyword + Florida + year, NOT the long descriptive H1, and with **no
+      " - Florida's Best Fishing" suffix** (Rank Math uses the custom title verbatim). *74 titles ran
+      66–134 chars before this fix — the #1 audit failure.*
+- [ ] **Meta description 120–160 chars**, one complete sentence — not merely "set" (*17 ran over 160*)
+- [ ] **Exactly ONE `<h1>`** — the theme outputs the page-title H1 automatically; **never** put an
+      `<h1>` in body content, start body headings at `<h2>` (*/contact/ had two before this fix*)
+- [ ] **Alt text on every `<img>`.** A site-wide **default OG image is set** (Rank Math
+      `titles.open_graph_image` = `fbf-og-v2.png`, the real oval logo on navy), so a post with no
+      featured image still gets a branded social card — but a real featured image is better where one
+      credibly fits.
+
 **Internal links — the #1 historical gap**
 - [ ] 3–5 contextual in-body links; spoke links UP to its pillar; pillar + 2–3 older posts link DOWN
 - [ ] Link to the relevant region page / offshore hub
@@ -182,7 +195,9 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
 - ✅ **mullet run** (early-Aug) — pillar 501 refreshed + cast-net spoke 1290, 2026-08-16
 - ✅ **pompano / surf** (mid-Sep) — surf cluster completed 2026-07-29 (550, 551, 537, 320)
   and the fall-blitz spoke 1323 landed 2026-08-16
-- **Gulf gag grouper opener — Sep 1.** Short window, high value. Nearest live trigger
+- ✅ **Gulf gag grouper opener — Sep 1** — post **345** refreshed 2026-08-16/17 with the FWC executive-order
+  dates (Gulf state waters Sep 1–30, aligned to NOAA; Atlantic ended early Aug 2). Re-verified against
+  myfwc.com 2026-08-20 — still correct. **Don't re-derive this next run.**
 - **Stone crab** — season Oct 15 – May 1 (FWC-verified 2026-08-16), publish by ~Oct 1
 - **Sheepshead** — ~Nov 1
 
@@ -197,7 +212,7 @@ verified against all 60 published posts on 2026-08-16 — **none of these exists
 | ~~1~~ | ~~**Bluefish & Spanish Mackerel in the Florida Surf**~~ | ~~before mid-Sept~~ | ✅ **DONE 2026-08-16 — post 1323.** `bluefish` + `spanish-mackerel` added to `lib/regs.js`; regs widget preset `bluefish@atlantic`, throw preset `spanish-mackerel`; card on `/species/` hub; down-links from 550, 501, 315. Post **315** also retrofitted with the regs widget, now that `spanish-mackerel` exists |
 | 2 | **Florida Stone Crab: Season, Claw Limits & How to Trap** | **publish ~Oct 1** (season opens **Oct 15**) | Completes the shellfish set with the existing scallop and lobster posts. FWC-verified 2026-08-16: **Oct 15 – May 1** (closed May 2), claw min **2 7/8″**, **1 gal/person or 2 gal/vessel, whichever is less**, claws only. Re-verify at publish. Not in `regs.js` (crustacean — decide whether the checker should carry it) |
 | 3 | **How to Catch Sheepshead in Florida** | **~Nov 1** — winter species | The biggest single species hole on the site. **Already in `lib/regs.js`** → deploy the regs widget preset to `sheepshead`. Pairs with existing bridge/dock content. Species guide → **must add a card to the `/species/` hub (596)** |
-| 4 | **Pier fishing cluster** (pillar + spokes) | evergreen | *Zero* coverage today and the most accessible way to fish Florida (no boat). Skyway, Sebastian, Juno, Navarre, Anna Maria. The `setup` widget **already has a `pier` preset with nothing pointing at it.** Monetizes on rods, carts, nets, lights |
+| ~~4~~ | ~~**Pier fishing cluster** (pillar + spokes)~~ | ~~evergreen~~ | ✅ **PILLAR + FIRST SPOKE DONE 2026-08-20 — posts 1387 (`/florida-pier-fishing-guide/`) and 1389 (`/best-fishing-piers-florida/`).** The orphaned `setup` `pier` preset finally has a target (1387, `keep`), plus regs preset `sheepshead`. Down-links added from 550, 40, 537. ⚠️ **Anna Maria City Pier is NOT fishable** — destroyed 2024, rebuild targeting ~Nov 2026; Rod &amp; Reel returns on land only. Remaining spokes worth building: pier rigs/bait deep-dive, night fishing a pier, and a jetty guide |
 | 5 | **Cleaning, Filleting & Cooking Your Catch** | evergreen | Strong evergreen traffic and unusually good gear attachment (knives, boards, vacuum sealers, coolers) |
 | 6 | **Fishing Knots That Actually Matter** | evergreen | Enormous volume, weak direct monetization, but the best internal-link glue available — every gear and species post can point at it |
 
