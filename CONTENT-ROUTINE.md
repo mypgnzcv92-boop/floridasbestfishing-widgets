@@ -26,11 +26,17 @@ until it is wired into these hubs** — that is the single biggest change to the
 
 | Page | ID | Slug | What it is | When you must touch it |
 |---|---|---|---|---|
-| Home | 12 | `/` | Hero → Today's Bite (live solunar) → Latest Guides → Tools → Regions → signup | **Never manually** — Latest Guides auto-populates via `[fbf_latest]` |
+| Home | 12 | `/` | Hero → Today's Bite (live solunar) → Latest Guides → Tools → Regions → signup | **Never manually** — Latest Guides auto-populates via `[fbf_latest]`. The Tools cards are authored HTML since 2026-08-21 (the theme's `[fbf_tools]` shortcode still points every card at `/tools/` until `functions.php` is updated over SSH) |
 | Species hub | 596 | `/species/` | All species guides, grouped Inshore / Flats / Surf / Nearshore / Offshore | **Every time a species guide publishes** |
 | Regions hub | 597 | `/regions/` | 11 regions grouped Atlantic / Keys / Gulf / Offshore | When a region page is added |
 | Reports hub | 659 | `/reports/` | Live conditions + latest written reports + season openers | Auto-populates; edit only for season-opener links |
-| Tools hub | 298 | `/tools/` | Reg checker, What Should I Throw, Setup Matcher | When a widget is added |
+| Tools hub | 298 | `/tools/` | Tide band (region picker) + cards linking to the five tool pages below | When a tool page is added |
+| Season & Limit Checker | 1572 | `/tools/season-checker/` | `regs` widget page (2026-08-21) | When species enter `lib/regs.js` (the copy says 22) |
+| Live Tide Charts | 1574 | `/tools/tides/` | `tide` widget with region picker + the station table | When a region or NOAA station changes |
+| Solunar Bite Times | 1575 | `/tools/bite-times/` | `solunar` widget with region picker | Rarely |
+| What Should I Throw? | 1576 | `/tools/what-should-i-throw/` | `throw` widget page | When species presets change (the copy says ten) |
+| Pick the Right Setup | 1577 | `/tools/setup-matcher/` | `setup` widget page | When scenarios change (the copy says nine) |
+| Charters | 22 | `/charters/` | 3 reviewed operations (cards use the posts' own excerpts) + 10 region cards with FishingBooker deep links | When a charter review publishes — add a card |
 | About | 16 | `/about/` | Who writes it, what the site is and is not | Rarely |
 | How We Research | 658 | `/how-we-research/` | Sourcing methodology per content type | When sourcing practice changes |
 
@@ -64,7 +70,7 @@ a site-wide migration removed all of them and reintroducing one is a visible reg
 Fonts: **Bevan** (display/H1), **Sanchez** (H2/H3), **Source Serif 4** (body), **Cinzel** (labels,
 nav, eyebrows). All self-hosted in the theme; no Google Fonts request.
 
-## Widgets (4 live)
+## Widgets (5 live)
 
 | Key | Marker | Mount | Presets |
 |---|---|---|---|
@@ -72,6 +78,16 @@ nav, eyebrows). All self-hosted in the theme; no Google Fonts request.
 | `throw` | `FBF:throw` | `data-fbf-throw data-species` | snook, redfish, seatrout, tarpon, flounder, sheepshead, black-drum, jack-crevalle, spanish-mackerel, mangrove-snapper |
 | `setup` | `FBF:setup` | `data-fbf-setup data-scenario` | beginner, inshore-allround, big-snook, nearshore, offshore-bottom, offshore-troll, pier, surf, tarpon |
 | `solunar` | `FBF:solunar` | `data-fbf-solunar data-region` | region keys from `lib/regions.js` |
+| `tide` | `FBF:tide` | `data-fbf-tide data-region` | region keys from `lib/regions.js` — live NOAA hilo, rendered in the region's own time zone |
+
+- **Region pages carry the `tide` widget where the old inline NOAA script sat** (deploy anchor
+  `replace-legacy-tide`, which behaves like `keep` after the first run); solunar lands after
+  `<!-- FBF:tide:end -->`. **Both render in the region's own zone** (`tz` in `lib/regions.js`;
+  the Panhandle is Central) — never the visitor's.
+- A preset may carry **`+picker`** (tide/solunar) to render the region `<select>`, remembered in
+  `localStorage['fbf-region']`; the tool pages and the hub use it. `@zone` is still regs-only.
+- The home (12) and reports (659) solunar loaders are deploy-managed `keep` targets — no more
+  hand-bumping after a solunar change.
 
 ⚠️ **If the post body authors its own widget placement, use the `keep` anchor in `deploy.py`.**
 Every other anchor strips the marker and re-inserts at the anchor — i.e. it RELOCATES the widget on
@@ -240,7 +256,8 @@ network carries a brand.
 4. Featured image upload + assign (or skip per the photo rule).
 5. **Wire the hubs** (§4).
 6. **Widgets:** add the post id to the `DEPLOY` dict in `deploy.py`, then `python3 deploy.py <widget>`.
-   If a bundle changed: `build.py` → commit → push → purge jsDelivr → `deploy.py`.
+   If a bundle changed: `build.py` → commit → push → purge jsDelivr → `deploy.py`. The tools hub
+   (298) no longer hosts throw/setup/regs — each lives on its own page (ids in §1, anchor `keep`).
 7. **Cache flush:** `POST /wp-json/fbf/v1/flush-cache` with the App Password — purges GoDaddy *and*
    the Cloudflare edge. `deploy.py` already calls it at the end of every run.
    ⚠️ HTML is served with a 31-day browser `max-age` set by GoDaddy's gateway (not changeable from
@@ -250,6 +267,20 @@ network carries a brand.
 9. Verify live: meta description, ~3–4KB BlogPosting JSON-LD, excerpt on the homepage grid.
 
 # 9. Open / uncertain
+
+- **Theme batch queued — needs SSH** (port 22 to the GoDaddy host timed out all day 2026-08-21, and
+  the wp-admin Theme File Editor route was blocked by the harness classifier): in
+  `wp-content/themes/fbf-2026/functions.php` point the `[fbf_tools]` cards at the five tool pages
+  (+ a Season Checker card), make `[fbf_latest]` card images use the attachment alt (fall back to
+  the post title) instead of `alt=""`, then put `[fbf_tools]` back on page 12.
+- **Bite Board** (`/bite-board/`: tides + solunar + first/last light + moon + legal-to-keep, per
+  region, one screen) — deferred by William 2026-08-21; the named next build. Gear-review schema
+  stays BlogPosting on purpose (research-led roundups; `Review` needs a single rated product).
+- **Byline stays "Captain"** (William, 2026-08-21). Only the author nicename changed, so the author
+  URL and schema `@id` are `/author/captain/` instead of the admin login name.
+- ⚠️ **Never re-save content unslashed** (`wp_update_post` without `wp_slash`): the 2026-08-15
+  colour migration stripped every `\'` and silently broke the inline tide script on ten region pages
+  for six days. There is now zero inline JS in page content — keep it that way (loaders only).
 
 - Posts-per-week is a guardrail, not a law — the gate wins.
 - Amazon uncloak: parked pending William.
