@@ -173,7 +173,11 @@ posts drags the whole site down (helpful-content is sitewide).
   module or plain `amazon.com/dp/<ASIN>?tag=floridasbestf-20`. Direct ASIN on money pages; search
   URLs only for casual mentions. ⚠️ The uncloak switch is **parked** (William deferred 2026-07-10) —
   until then Amazon stays `/go/` and is tracked.
-- **FishingBooker = cloaked `/go/` permanently.** Highest-value CTA on charter/region/species posts.
+- **FishingBooker = DIRECT links, not cloaked** (William confirmed 2026-08-20 — supersedes the old
+  "cloaked `/go/` permanently" line, which never matched practice anyway). Use the house format:
+  `https://fishingbooker.com/<path>#d7lo40i9d878d` — the tracking anchor is what gets credited, so it
+  must be on every link. Highest-value CTA on charter/region/species posts. No `/go/` link exists for
+  FishingBooker and none should be created.
 - **Disclosure:** bottom of every monetized post, including the Amazon Associate statement + FTC line.
 - **Tracking is LIVE:** a site-wide GP hook (element 341) fires GA4 `affiliate_click` on `/go/`
   clicks and `newsletter_signup` on the signup form. ⚠️ Site Kit excludes logged-in users — test in
