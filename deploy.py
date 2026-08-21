@@ -10,7 +10,8 @@ upserts the loader between <!-- FBF:<marker>:start --> ... :end --> markers.
   python3 deploy.py throw setup          # only these
   python3 deploy.py solunar --dry-run    # preview, write nothing
 
-A target is (rest_type, id, preset[, anchor]). Anchor (per-target, else widget
+A target is (rest_type, id, preset[, anchor]). A preset may carry "@zone" (regs)
+or "+picker" (tide/solunar: render the region select). Anchor (per-target, else widget
 default): 'after-tide' | 'before-h2' | 'after-p' | 'append' | ('before-text', T)
 | 'keep' (post authors its own placement) | 'replace-legacy-tide' (tide only).
 
@@ -57,7 +58,10 @@ DEPLOY = {
         # Runs FIRST: the solunar anchor below is "after the first wp:html block", i.e. after this one.
         'marker': 'tide', 'template': 'dist/tide-block.template.html',
         'placeholder': '{{REGION}}', 'anchor': 'replace-legacy-tide',
-        'targets': list(REGION_PAGES),
+        'targets': list(REGION_PAGES) + [
+            ('pages', 1574, 'tampa-bay+picker', 'keep'),  # /tools/tides/ (2026-08-21) — region select, remembered
+            ('pages', 298, 'tampa-bay+picker', 'keep'),   # tools hub band (2026-08-21)
+        ],
     },
     'solunar': {
         'marker': 'solunar', 'template': 'dist/solunar-block.template.html',
@@ -66,13 +70,14 @@ DEPLOY = {
             # hand-placed inside the "bite" bands at the 2026-08-15 rebuild; markers were already there
             ('pages', 12, 'tampa-bay', 'keep'),   # homepage "Today's Bite"
             ('pages', 659, 'tampa-bay', 'keep'),  # reports hub "Conditions Right Now"
+            ('pages', 1575, 'tampa-bay+picker', 'keep'),  # /tools/bite-times/ (2026-08-21) — region select, remembered
         ],
     },
     'throw': {  # "What should I throw?" -> species guides + topwater post + ALL 10 region pages
         'marker': 'throw', 'template': 'dist/whatsthrow-block.template.html',
         'placeholder': '{{SPECIES}}', 'anchor': 'before-h2',
         'targets': [
-            ('pages', 298, 'snook', 'append'),  # tools hub — loader placed by hand at hub build
+            ('pages', 1576, 'snook', 'keep'),  # /tools/what-should-i-throw/ (2026-08-21) — the hub now links here
             ('posts', 138, 'snook'), ('posts', 206, 'redfish'), ('posts', 170, 'seatrout'),
             ('posts', 139, 'tarpon'), ('posts', 171, 'snook'), ('posts', 301, 'mangrove-snapper'),
             ('posts', 314, 'flounder'), ('posts', 315, 'spanish-mackerel'),  # added 2026-06-28
@@ -95,7 +100,7 @@ DEPLOY = {
         'placeholder': '{{SCENARIO}}', 'anchor': 'before-h2',
         'targets': [
             ('pages', 24, 'inshore-allround', 'after-p'), ('pages', 273, 'offshore-bottom'),
-            ('pages', 298, 'inshore-allround', 'append'),  # tools hub
+            ('pages', 1577, 'inshore-allround', 'keep'),  # /tools/setup-matcher/ (2026-08-21) — the hub now links here
             ('posts', 141, 'inshore-allround'), ('posts', 40, 'beginner', 'after-p'),
             ('posts', 38, 'inshore-allround', 'after-p'),
             ('posts', 302, 'offshore-bottom'), ('posts', 303, 'nearshore'),
@@ -122,7 +127,7 @@ DEPLOY = {
         'marker': 'regs', 'template': 'dist/regs-block.template.html',
         'placeholder': '{{SPECIES}}', 'anchor': 'before-h2',
         'targets': [
-            ('pages', 298, 'snook', 'append'),          # tools hub
+            ('pages', 1572, 'snook@gulf', 'keep'),      # /tools/season-checker/ (2026-08-21) — the hub now links here
             ('posts', 138, 'snook'), ('posts', 331, 'snook'),
             ('posts', 206, 'redfish'), ('posts', 560, 'redfish'),
             ('posts', 170, 'seatrout'), ('posts', 568, 'seatrout'),
@@ -295,9 +300,16 @@ def deploy_widget(key):
         # here keeps the targets list readable and leaves single-value presets
         # (every other widget) working exactly as before.
         species, _, zone = preset.partition('@')
+        # "+picker" on a region preset renders the widget with its region <select>
+        # (tide/solunar only) — used on the tool pages, where the reader picks the water.
+        picker = species.endswith('+picker')
+        if picker:
+            species = species[:-len('+picker')]
         block = tpl.replace(w['placeholder'], species)
         if '{{ZONE}}' in block:
             block = block.replace('{{ZONE}}', zone or 'gulf')
+        if picker:
+            block = block.replace('></div>', ' data-picker="1"></div>', 1)
         new, where = upsert(raw, block, w['marker'], anchor)
         if DRY:
             print(f"  {ptype}/{pid:<4} [{preset:<16}] would {verb:<7} ({where})  net {len(new)-len(raw):+,}b")
