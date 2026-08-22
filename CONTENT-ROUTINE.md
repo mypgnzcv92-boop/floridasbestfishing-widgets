@@ -192,7 +192,9 @@ posts drags the whole site down (helpful-content is sitewide).
 - **FishingBooker = DIRECT links, not cloaked** (William confirmed 2026-08-20 — supersedes the old
   "cloaked `/go/` permanently" line, which never matched practice anyway). Use the house format:
   `https://fishingbooker.com/<path>#d7lo40i9d878d` — the tracking anchor is what gets credited, so it
-  must be on every link. Highest-value CTA on charter/region/species posts. No `/go/` link exists for
+  must be on every link. Highest-value CTA on charter/region/species posts. **No inline tags next to
+  links** (no "(paid link)", "(affiliate link)", "(ad)"): `rel="sponsored nofollow"` + the bottom
+  disclosure paragraph are the whole disclosure — William had every inline tag removed 2026-08-22. No `/go/` link exists for
   FishingBooker and none should be created.
 - **Disclosure:** bottom of every monetized post, including the Amazon Associate statement + FTC line.
 - **Tracking is LIVE:** a site-wide GP hook (element 341) fires GA4 `affiliate_click` on `/go/`

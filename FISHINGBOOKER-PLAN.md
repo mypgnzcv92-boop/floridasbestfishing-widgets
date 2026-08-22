@@ -29,30 +29,30 @@ https://fishingbooker.postaffiliatepro.com/scripts/click.php?a_aid=<AAID>&a_bid=
 `<BID>` and `<DESTPARAM>` are read off a link you generate in step 3 (not publicly documented).
 
 ## 2. Placement (per page)
-- **Disclosure sentence** at top of page (above everything). **`(paid link)`** inline tag on every CTA.
+- **Disclosure sentence** at the bottom of the page (house rule: disclosures always last). **No inline tags next to links** — `rel="sponsored nofollow"` plus the bottom disclosure is the whole disclosure. (The original `(paid link)` inline tag was removed site-wide on 2026-08-22: William found it horrible.)
 - **Slot B (primary, strongest):** right after the review verdict / after the region's "best for…" pick.
 - Secondary: end-of-post "Compare & book" callout box; optional sticky sidebar box.
 
 ### Charter reviews → deep-link to the charter's own FishingBooker listing (search name → copy `/charters/view/...`; fallback = city page)
 | Page | Fallback destination | CTA (slot B) |
 |---|---|---|
-| Baytime Charters (Tampa inshore) | `/tampa` | "Fished with Baytime and loved it? Check their live dates & prices on FishingBooker (paid link)" |
-| Far Out Fishing (Key West offshore) | `/key-west` | "Ready to run offshore out of Key West? See Far Out's open dates & prices (paid link)" |
-| Islamorada on the Fly (Keys flats) | `/islamorada` | "Book your flats day in Islamorada — check this guide's availability (paid link)" |
+| Baytime Charters (Tampa inshore) | `/tampa` | "Fished with Baytime and loved it? Check their live dates & prices on FishingBooker" |
+| Far Out Fishing (Key West offshore) | `/key-west` | "Ready to run offshore out of Key West? See Far Out's open dates & prices" |
+| Islamorada on the Fly (Keys flats) | `/islamorada` | "Book your flats day in Islamorada — check this guide's availability" |
 
 ### Region pages → deep-link to the destination results page (confirm each slug on FishingBooker)
 | Page | Destination (confirm) | CTA |
 |---|---|---|
-| Tampa Bay | `/tampa` | "Compare Tampa Bay's top-rated inshore charters and see today's open dates (paid link)" |
-| Florida Keys | `/florida-keys` | "See the best-reviewed Keys charters — reef to flats — with real-time availability (paid link)" |
-| Southeast Coast | `/fort-lauderdale` or `/miami` | "Check live prices on Southeast Florida's top offshore & reef charters (paid link)" |
-| Panhandle | `/destin` | "Compare Destin & the Emerald Coast's best charters and check open dates (paid link)" |
-| Mosquito Lagoon | `/mosquito-lagoon` or `/new-smyrna-beach` | "Book a Mosquito Lagoon redfish & trout guide — see today's availability (paid link)" |
-| Indian River Lagoon | `/indian-river` or `/titusville` | "Find a top Indian River Lagoon inshore guide and check open dates (paid link)" |
-| Charlotte Harbor / Boca Grande | `/boca-grande` | "Chasing tarpon in Boca Grande? Compare the top guides and check live dates (paid link)" |
-| Everglades / Flamingo | `/everglades-city` or `/flamingo` | "See the best Everglades & Flamingo backcountry charters with real-time prices (paid link)" |
-| Cedar Key / Nature Coast | `/cedar-key` | "Compare Nature Coast scalloping & inshore trips and check availability (paid link)" |
-| Jacksonville / NE Florida | `/jacksonville` | "Find Jacksonville's top-rated inshore & offshore charters — see open dates (paid link)" |
+| Tampa Bay | `/tampa` | "Compare Tampa Bay's top-rated inshore charters and see today's open dates" |
+| Florida Keys | `/florida-keys` | "See the best-reviewed Keys charters — reef to flats — with real-time availability" |
+| Southeast Coast | `/fort-lauderdale` or `/miami` | "Check live prices on Southeast Florida's top offshore & reef charters" |
+| Panhandle | `/destin` | "Compare Destin & the Emerald Coast's best charters and check open dates" |
+| Mosquito Lagoon | `/mosquito-lagoon` or `/new-smyrna-beach` | "Book a Mosquito Lagoon redfish & trout guide — see today's availability" |
+| Indian River Lagoon | `/indian-river` or `/titusville` | "Find a top Indian River Lagoon inshore guide and check open dates" |
+| Charlotte Harbor / Boca Grande | `/boca-grande` | "Chasing tarpon in Boca Grande? Compare the top guides and check live dates" |
+| Everglades / Flamingo | `/everglades-city` or `/flamingo` | "See the best Everglades & Flamingo backcountry charters with real-time prices" |
+| Cedar Key / Nature Coast | `/cedar-key` | "Compare Nature Coast scalloping & inshore trips and check availability" |
+| Jacksonville / NE Florida | `/jacksonville` | "Find Jacksonville's top-rated inshore & offshore charters — see open dates" |
 
 Optional: deep-link species-filtered URLs (tarpon for Boca Grande, redfish for Mosquito Lagoon, fly for
 Islamorada) — grab the filtered URL from FishingBooker and append `?a_aid=<AAID>`.
