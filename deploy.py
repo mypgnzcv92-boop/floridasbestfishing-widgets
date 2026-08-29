@@ -107,7 +107,8 @@ DEPLOY = {
             ('posts', 311, 'offshore-bottom'),  # grouper species guide (2026-06-26)
             ('posts', 313, 'big-snook'),  # night snook tactics how-to (2026-06-28)
             ('posts', 319, 'offshore-bottom'), ('posts', 320, 'surf'),  # added 2026-07-04 (yellowtail, shark surf)
-            ('posts', 330, 'nearshore'), ('posts', 331, 'big-snook'),  # added 2026-07-07 (tripletail, snook season)
+            ('posts', 330, 'nearshore'),  # added 2026-07-07 (tripletail)
+            ('posts', 331, 'big-snook', 'keep'),  # snook season post authors its markers above the first H2 (2026-08-29)
             ('posts', 332, 'offshore-bottom'), ('posts', 333, 'offshore-bottom'),  # added 2026-07-07 (mutton, goliath)
             ('posts', 345, 'offshore-bottom', 'keep'), ('posts', 346, 'offshore-bottom'),  # gag season authors its own placement
             ('posts', 383, 'inshore-allround'), ('posts', 384, 'inshore-allround'),  # added 2026-07-10 (braid, inshore rods gear reviews)
@@ -121,6 +122,7 @@ DEPLOY = {
             ('posts', 829, 'offshore-bottom', 'keep'),  # grouper tackle guide (2026-08-16) — authors its own placement
             ('posts', 1387, 'pier', 'keep'),  # pier fishing PILLAR (2026-08-20) — first target for the 'pier' preset
             ('posts', 1458, 'inshore-allround', 'keep'),  # saltwater knots guide (2026-08-21) — sits in the leader-sizing section
+            ('posts', 1629, 'pier', 'keep'),  # jetty guide (2026-08-29) — second target for the 'pier' preset
         ],
     },
     'regs': {  # "Is it in season?" FWC size/bag checker -> reg-sensitive guides + tools hub
@@ -128,7 +130,8 @@ DEPLOY = {
         'placeholder': '{{SPECIES}}', 'anchor': 'before-h2',
         'targets': [
             ('pages', 1572, 'snook@gulf', 'keep'),      # /tools/season-checker/ (2026-08-21) — the hub now links here
-            ('posts', 138, 'snook'), ('posts', 331, 'snook'),
+            ('posts', 138, 'snook'),
+            ('posts', 331, 'snook', 'keep'),  # ditto — hand-placed with the setup block, above the first H2
             ('posts', 206, 'redfish'), ('posts', 560, 'redfish'),
             ('posts', 170, 'seatrout'), ('posts', 568, 'seatrout'),
             ('posts', 139, 'tarpon'),
@@ -147,6 +150,7 @@ DEPLOY = {
             ('posts', 315, 'spanish-mackerel'),  # retrofit 2026-08-16 — possible once spanish-mackerel entered lib/regs.js
             ('posts', 1387, 'sheepshead', 'keep'),  # pier fishing pillar (2026-08-20) — widget sits in its own regs section
             ('posts', 1459, 'mangrove-snapper', 'keep'),  # fillet/cook guide (2026-08-21) — sits in the whole-condition section; reader switches species
+            ('posts', 1629, 'snook', 'keep'),  # jetty guide (2026-08-29) — sits under its own season section; reader switches species
         ],
     },
 }
