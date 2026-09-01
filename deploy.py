@@ -105,7 +105,7 @@ DEPLOY = {
             ('posts', 38, 'inshore-allround', 'after-p'),
             ('posts', 302, 'offshore-bottom'), ('posts', 303, 'nearshore'),
             ('posts', 311, 'offshore-bottom'),  # grouper species guide (2026-06-26)
-            ('posts', 313, 'big-snook'),  # night snook tactics how-to (2026-06-28)
+            ('posts', 313, 'big-snook', 'keep'),  # night snook how-to — retrofitted 2026-08-31 for the Sept 1 opener; authors its own markers
             ('posts', 319, 'offshore-bottom'), ('posts', 320, 'surf'),  # added 2026-07-04 (yellowtail, shark surf)
             ('posts', 330, 'nearshore'),  # added 2026-07-07 (tripletail)
             ('posts', 331, 'big-snook', 'keep'),  # snook season post authors its markers above the first H2 (2026-08-29)
@@ -151,6 +151,7 @@ DEPLOY = {
             ('posts', 1387, 'sheepshead', 'keep'),  # pier fishing pillar (2026-08-20) — widget sits in its own regs section
             ('posts', 1459, 'mangrove-snapper', 'keep'),  # fillet/cook guide (2026-08-21) — sits in the whole-condition section; reader switches species
             ('posts', 1629, 'snook', 'keep'),  # jetty guide (2026-08-29) — sits under its own season section; reader switches species
+            ('posts', 313, 'snook', 'keep'),  # night snook retrofit (2026-08-31) — Sept 1 opener; markers authored above the first H2
         ],
     },
 }
