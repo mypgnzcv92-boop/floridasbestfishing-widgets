@@ -231,6 +231,10 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
   at midnight — including the excerpt on the homepage grid). ⚠️ **Lesson for the seasonal overlay: a
   season change invalidates every post framed around the old state, not just the obvious season post.**
   When a season flips, grep the corpus for posts whose lede or excerpt asserts the old status.
+  ⚠️ **And verify CLOSE dates, not just open dates.** The amberjack guide (346) shipped "Gulf state
+  waters Sept 1 – Oct 31" when the FWC executive order closes them **Oct 13** — 18 days of illegal
+  harvest advice, live until the 2026-09-01 sweep caught it. When an FWC EO sets a season, check
+  both ends of the window against the order itself.
 - **Stone crab** — season Oct 15 – May 1 (FWC-verified 2026-08-16), publish by ~Oct 1
 - **Sheepshead** — ~Nov 1
 
