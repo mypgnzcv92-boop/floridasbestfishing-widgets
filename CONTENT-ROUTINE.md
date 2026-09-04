@@ -235,6 +235,16 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
   waters Sept 1 – Oct 31" when the FWC executive order closes them **Oct 13** — 18 days of illegal
   harvest advice, live until the 2026-09-01 sweep caught it. When an FWC EO sets a season, check
   both ends of the window against the order itself.
+- ⚠️ **Gulf red snapper fall reopening — Sep 1** flipped the corpus again (2026-09-03 run). Post **172** was
+  retrofitted Sep 1; **302** (Atlantic) was not — still said Gulf "open through July 31" and Atlantic "postponed".
+  FWC-verified 2026-09-03: Gulf 16"/2, **Sep 1–Oct 4 daily**, then weekends Oct 9–11, 16–18, 23–25, Oct 30–Nov 1,
+  Nov 7–8, 14–15, 21–22, Nov 26–29, Dec 5–6, 12–13, 19–20, Dec 25–27, Jan 1–4 2027. **Atlantic: state waters OPEN
+  (20" TL, 2/person), federal CLOSED.** FL/GA/SC revised EFP (Oct 1–31, 1 fish, FL cap 185,379) is at NOAA —
+  comments closed Aug 25, **no decision as of Sep 3**. **STAGED, NOT PUBLISHED (classifier blocked the write —
+  needs William's explicit go):** `drafts/atlantic-red-snapper-302-retrofit.html` +
+  `drafts/publish_atlantic_red_snapper.py` (302 full body + 172 Atlantic h3/fall-table fix + 530 one-sentence
+  fix + meta + flush; dry-run passes). At publish: re-check NOAA first — if it has ruled, rewrite the "October
+  Plan" H2 and status table before running. **When NOAA rules either way, 302 needs a same-day update.**
 - **Stone crab** — season Oct 15 – May 1 (FWC-verified 2026-08-16), publish by ~Oct 1
 - **Sheepshead** — ~Nov 1
 
