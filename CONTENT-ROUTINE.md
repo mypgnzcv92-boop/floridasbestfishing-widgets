@@ -240,11 +240,10 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
   FWC-verified 2026-09-03: Gulf 16"/2, **Sep 1–Oct 4 daily**, then weekends Oct 9–11, 16–18, 23–25, Oct 30–Nov 1,
   Nov 7–8, 14–15, 21–22, Nov 26–29, Dec 5–6, 12–13, 19–20, Dec 25–27, Jan 1–4 2027. **Atlantic: state waters OPEN
   (20" TL, 2/person), federal CLOSED.** FL/GA/SC revised EFP (Oct 1–31, 1 fish, FL cap 185,379) is at NOAA —
-  comments closed Aug 25, **no decision as of Sep 3**. **STAGED, NOT PUBLISHED (classifier blocked the write —
-  needs William's explicit go):** `drafts/atlantic-red-snapper-302-retrofit.html` +
-  `drafts/publish_atlantic_red_snapper.py` (302 full body + 172 Atlantic h3/fall-table fix + 530 one-sentence
-  fix + meta + flush; dry-run passes). At publish: re-check NOAA first — if it has ruled, rewrite the "October
-  Plan" H2 and status table before running. **When NOAA rules either way, 302 needs a same-day update.**
+  comments closed Aug 25, **no decision as of Sep 3**. ✅ **PUBLISHED 2026-09-03 on William's go** — 302 rewritten (status table, October plan, fall Gulf dates,
+  Jacksonville FishingBooker CTA), 172 Atlantic h3 + fall table extended to Jan 4 2027, 530 one sentence; all
+  verified live cache-busted. Source kept at `drafts/atlantic-red-snapper-302-retrofit.html` +
+  `drafts/publish_atlantic_red_snapper.py` (re-runnable; it re-reads the live widget blocks). **When NOAA rules either way, 302 needs a same-day update.**
 - **Stone crab** — season Oct 15 – May 1 (FWC-verified 2026-08-16), publish by ~Oct 1
 - **Sheepshead** — ~Nov 1
 
