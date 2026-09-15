@@ -244,6 +244,24 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
   Jacksonville FishingBooker CTA), 172 Atlantic h3 + fall table extended to Jan 4 2027, 530 one sentence; all
   verified live cache-busted. Source kept at `drafts/atlantic-red-snapper-302-retrofit.html` +
   `drafts/publish_atlantic_red_snapper.py` (re-runnable; it re-reads the live widget blocks). **When NOAA rules either way, 302 needs a same-day update.**
+- 🗓️ **2026-09-14/15 run — October flip watchlist.** FWC-verified 2026-09-15: **flounder** 14″ TL, 5/person,
+  **closed Oct 15 – Nov 30 in all state AND federal waters**, one statewide rule (no Gulf/Atlantic split); **Gulf gag**
+  Sep 1–30, closed Oct 1 – Dec 31 (Atlantic closed since Aug 2); **Gulf amberjack** closes 12:01 a.m. **Oct 14** (EO,
+  still correct in 346); **hogfish** Atlantic + all waters south of Cape Sable **May 1 – Oct 31** (385's table is right).
+  **Atlantic red snapper: still no NOAA ruling on the revised EFP** — 302 stays as-is; the *original* EFP dates
+  (Oct 2–4/9–11/16–18) are still on third-party sites and are NOT in effect. Drafts staged for William:
+  `drafts/flounder-314-closure-retrofit.html` (Oct 15 frame + a real range fix — see below) and
+  `drafts/gag-grouper-345-deadline-retrofit.html` (345 had **no FishingBooker link** despite telling readers to book).
+  **Dates to act on:** Sep 30 → reframe 345 post-season · **Oct 1** → 331/313 Charlotte Harbor + SW snook opener, stone
+  crab publish · Oct 13 → 346 · **Oct 15** → flounder closes (regs widget flips itself; 1770's "flounder filling out
+  mixed bags" line goes stale) · Oct 31 → 385.
+  ⚠️ **Species-range error found in 314:** it said gulf flounder = "west coast and Panhandle", southern = "Atlantic side".
+  FWRI (2024 status & trends): **gulf flounder range the ENTIRE Florida coast; southern flounder only north of the
+  Loxahatchee (Atlantic) and the Caloosahatchee (Gulf).** Southern favours mud/silt, gulf sand; both spawn offshore late
+  fall–winter in ~65–200 ft. FWC says the closure covers the window "when pre-spawning aggregations form" — so the open
+  window is the EARLY migration, not the peak. Don't write that fish peak-stage before Oct 15.
+  ⚠️ **Image reuse trap:** Unsplash's Jupiter Inlet aerial (Chase Baker, photo-1601517315022) is ALREADY media 1630 on the
+  jetty post. Check the media library before uploading any inlet shot. Ponce Inlet (Don Shetterly, photo-1561416387) is unused.
 - **Stone crab** — season Oct 15 – May 1 (FWC-verified 2026-08-16), publish by ~Oct 1
 - **Sheepshead** — ~Nov 1
 
