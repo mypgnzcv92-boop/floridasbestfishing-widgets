@@ -80,7 +80,7 @@ DEPLOY = {
             ('pages', 1576, 'snook', 'keep'),  # /tools/what-should-i-throw/ (2026-08-21) — the hub now links here
             ('posts', 138, 'snook'), ('posts', 206, 'redfish'), ('posts', 170, 'seatrout'),
             ('posts', 139, 'tarpon'), ('posts', 171, 'snook'), ('posts', 301, 'mangrove-snapper'),
-            ('posts', 314, 'flounder'), ('posts', 315, 'spanish-mackerel'),  # added 2026-06-28
+            ('posts', 314, 'flounder', 'keep'), ('posts', 315, 'spanish-mackerel'),  # added 2026-06-28
             ('posts', 321, 'jack-crevalle'),  # added 2026-07-04
             ('posts', 344, 'black-drum'),  # added 2026-07-08 (black drum guide)
             ('posts', 561, 'redfish'),  # added 2026-08-04 (best redfish lures gear post)
@@ -135,7 +135,7 @@ DEPLOY = {
             ('posts', 206, 'redfish'), ('posts', 560, 'redfish'),
             ('posts', 170, 'seatrout'), ('posts', 568, 'seatrout'),
             ('posts', 139, 'tarpon'),
-            ('posts', 314, 'flounder'), ('posts', 537, 'pompano'),
+            ('posts', 314, 'flounder', 'keep'), ('posts', 537, 'pompano'),
             ('posts', 343, 'permit@keys'), ('posts', 385, 'hogfish@keys'),
             ('posts', 209, 'cobia'),
             ('posts', 311, 'red-grouper'), ('posts', 345, 'gag-grouper', 'keep'),

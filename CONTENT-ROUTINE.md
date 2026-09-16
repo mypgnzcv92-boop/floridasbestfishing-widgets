@@ -249,9 +249,13 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
   Sep 1–30, closed Oct 1 – Dec 31 (Atlantic closed since Aug 2); **Gulf amberjack** closes 12:01 a.m. **Oct 14** (EO,
   still correct in 346); **hogfish** Atlantic + all waters south of Cape Sable **May 1 – Oct 31** (385's table is right).
   **Atlantic red snapper: still no NOAA ruling on the revised EFP** — 302 stays as-is; the *original* EFP dates
-  (Oct 2–4/9–11/16–18) are still on third-party sites and are NOT in effect. Drafts staged for William:
-  `drafts/flounder-314-closure-retrofit.html` (Oct 15 frame + a real range fix — see below) and
-  `drafts/gag-grouper-345-deadline-retrofit.html` (345 had **no FishingBooker link** despite telling readers to book).
+  (Oct 2–4/9–11/16–18) are still on third-party sites and are NOT in effect. ✅ **PUBLISHED 2026-09-16 on William's go** — **314** reframed on the Oct 15 closure (new "fall run" H2,
+  FWC-verified stamp, species-range fix, first featured image: Ponce Inlet) and **345** given the FishingBooker CTA it
+  never had (Destin) plus an Oct 1 deadline frame, new H1/excerpt, and FWC's current permit name ("State Reef Fish
+  Survey"). Both verified live cache-busted: SEO titles 53/31, metas 154/150, one H1, TOC, alt text, ~3.6–3.9KB JSON-LD.
+  Source kept at `drafts/flounder-314-closure-retrofit.html`, `drafts/gag-grouper-345-deadline-retrofit.html` +
+  `drafts/publish_flounder_gag.py` (re-runnable; media upload is idempotent). **314's throw + regs targets are now
+  `'keep'`** — the post authors its own placement, so never drop that 4th element.
   **Dates to act on:** Sep 30 → reframe 345 post-season · **Oct 1** → 331/313 Charlotte Harbor + SW snook opener, stone
   crab publish · Oct 13 → 346 · **Oct 15** → flounder closes (regs widget flips itself; 1770's "flounder filling out
   mixed bags" line goes stale) · Oct 31 → 385.
