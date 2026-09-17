@@ -197,6 +197,15 @@
       }
     },
     {
+      key: 'sailfish', name: 'Sailfish', group: 'Offshore', guide: '',
+      fwc: FWC + 'billfish-tuna/', verified: '2026-09-16',
+      note: 'A federal HMS Angling permit is required in federal waters (not in state waters). Any landed billfish must be reported to NOAA within 24 hours (800-894-5528 or hmspermits.noaa.gov). A sailfish you intend to release may NOT be taken out of the water if you are in federal waters, or in state waters holding a federal HMS permit. One billfish per person covers all billfish combined, not one of each.',
+      zones: {
+        atlantic: { size: '63" lower jaw to fork', bag: '1 billfish per person', season: YEAR_ROUND, seasonText: 'Open year-round' },
+        gulf: { size: '63" lower jaw to fork', bag: '1 billfish per person', season: YEAR_ROUND, seasonText: 'Open year-round' }
+      }
+    },
+    {
       key: 'hogfish', name: 'Hogfish', group: 'Reef', guide: '/how-to-catch-hogfish-florida/',
       fwc: FWC + 'hogfish/',
       note: 'The Atlantic rule covers the Keys and waters south of Cape Sable.',
