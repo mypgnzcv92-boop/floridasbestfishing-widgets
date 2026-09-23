@@ -266,7 +266,33 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
   window is the EARLY migration, not the peak. Don't write that fish peak-stage before Oct 15.
   ⚠️ **Image reuse trap:** Unsplash's Jupiter Inlet aerial (Chase Baker, photo-1601517315022) is ALREADY media 1630 on the
   jetty post. Check the media library before uploading any inlet shot. Ponce Inlet (Don Shetterly, photo-1561416387) is unused.
-- **Stone crab** — season Oct 15 – May 1 (FWC-verified 2026-08-16), publish by ~Oct 1
+- ⚠️⚠️ **2026-09-23 — Atlantic red snapper flipped AGAIN, and this one is a legality bug.** NOAA issued
+  Florida's revised EFP **26-SERO-07 on Sep 21**; FWC signed **EO 26-33 on Sep 22**. FWC-verified this run
+  from `myfwc.com/fishing/saltwater/recreational/atlantic-red-snapper/`: **season Oct 9–22, 2026**, one
+  continuous block, **Atlantic state AND federal waters**, **1 fish/person, NO minimum size**, inside a
+  10-fish snapper-grouper aggregate (only 1 may be red snapper), **no retention by for-hire captain/crew**.
+  Anglers 16+ **must declare each trip** in the FWC Atlantic Red Snapper Reporting System before leaving the
+  dock and **carry a copy of the EFP**; *"anglers who do not declare a red snapper trip may not keep red
+  snapper."* Private anglers need the free **State Reef Fish Angler** designation; for-hire must join the new
+  free **Atlantic For-Hire Reef Fish Registry**. FWC also **closed Atlantic state waters to red snapper on
+  Sep 22** ahead of the opener. FL/GA/SC caps: **83,720 / 4,859 / 8,695**; federal (non-EFP) season is
+  **Oct 9–11** only; FWC may add a **December** season after reviewing October data.
+  ⚠️ **The May weekend dates (Oct 2–4, 9–11, 16–18) are DEAD** but still all over third-party sites — Oct 2–4
+  is closed and Oct 12–15/19–22 are open.
+  ⚠️ **The Gulf schedule changed too:** FWC now prints **Sep 1–Oct 4 daily AND Oct 9–22 daily**, then Oct 23–25,
+  Oct 30–Nov 1, Nov 7–8/14–15/21–22, Nov 26–29, Dec 5–6/12–13/19–20, Dec 25–27, **Jan 1–4 2027**. Post 172's
+  "fall weekend sessions Oct 9–11, 16–18" row was wrong from this date.
+  ⚠️ **`myfwc.com/.../snappers/` still shows the standing Atlantic state rule (20″ TL, 2/person) — the EO
+  suspends it. Never write Atlantic red snapper from the snappers page.**
+  **STAGED, NOT PUBLISHED (plan mode, awaiting William):** `drafts/atlantic-red-snapper-302-eo2633.html` +
+  `drafts/publish_atlantic_red_snapper_eo2633.py` (302 full rewrite, 172 Atlantic h3 + Gulf fall rows, 530
+  sentence; `--dry-run` passes against live content).
+- **Stone crab** — season Oct 15 – May 1 (re-verified 2026-09-23), publish by ~Oct 1. Draft + publisher staged:
+  `drafts/florida-stone-crab-season-2026.html` + `drafts/publish_sailfish_stonecrab.py`
+- **Sailfish guide** — drafted 2026-09-16, **still unpublished**; regs entry already shipped. Staged for this
+  run with the Miami underwater sailfish image; re-verified against FWC 2026-09-23. ⚠️ FWC's billfish page
+  never says "aggregate" — print "one billfish per person per day" and drop the "not one of each" gloss (also
+  still in the `sailfish` note in `lib/regs.js`). Circle hooks are a **NOAA HMS tournament** rule, not an FWC one.
 - **Sheepshead** — ~Nov 1
 
 ## 7.1 NEXT UP — the queue (set 2026-08-16)
