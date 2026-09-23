@@ -294,10 +294,15 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
   weeks ahead of the Oct 15 opener for indexing lead time. Re-verified against FWC that day; gained the
   GoOutdoorsFlorida registration detail ("S" numbers), the 2 3/16″ escape ring, eyebrow/lede and the house
   FishingBooker path (Naples, browser-verified). No widget, by the 2026-08-31 decision. Down-links from 309 and
-  310. ⚠️ **STILL OWED: `/go/stone-crab-trap/`, `/go/stone-crab-claw-gauge/`, `/go/stone-crab-mallet/`** — SSH to
-  the host timed out on port 22 all through the 2026-09-23 run (same outage as 2026-08-21) and ThirstyAffiliate
-  destinations are not REST-writable, so the gear section still links only `cut-resistant-fillet-glove` and
-  `floating-cooler`. Create them the next time SSH answers and wire them in.
+  310. ✅ **The three `/go/` links shipped the same day** — `stone-crab-trap` (1872), `stone-crab-claw-gauge`
+  (1873), `stone-crab-mallet` (1874), all verified 301 → tagged Amazon search URLs and wired into the gear
+  section. ⚠️ **They did NOT need SSH.** Port 22 was down all run, but the `thirstylink` CPT takes
+  `_ta_destination_url` as a **top-level REST field** (not inside `meta`) — `POST wp/v2/thirstylink`
+  `{title, slug, status, _ta_destination_url, _ta_no_follow:"global", _ta_new_window:"global",
+  _ta_redirect_type:"global"}` creates a working cloaked link headlessly. The older "creating links is
+  easiest over SSH + WP-CLI" note sent this run down a dead end for an hour; don't repeat it.
+  Search URLs rather than direct ASINs here because Amazon stock is not verifiable from this environment —
+  swap in `/dp/<ASIN>` later with one REST call per link, no post edit needed.
 - **Sailfish** ✅ **PUBLISHED 2026-09-23 — post 1784** (`/how-to-catch-sailfish-florida/`, category 5), drafted
   2026-09-16 and held. Featured image is an actual sailfish tagged Miami FL (media 1785). Card on the `/species/`
   hub in the Offshore group; down-links from 273, 81 and 303. Widgets: `regs sailfish@atlantic` + the
