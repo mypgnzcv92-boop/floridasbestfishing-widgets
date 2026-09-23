@@ -284,15 +284,26 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
   "fall weekend sessions Oct 9–11, 16–18" row was wrong from this date.
   ⚠️ **`myfwc.com/.../snappers/` still shows the standing Atlantic state rule (20″ TL, 2/person) — the EO
   suspends it. Never write Atlantic red snapper from the snappers page.**
-  **STAGED, NOT PUBLISHED (plan mode, awaiting William):** `drafts/atlantic-red-snapper-302-eo2633.html` +
-  `drafts/publish_atlantic_red_snapper_eo2633.py` (302 full rewrite, 172 Atlantic h3 + Gulf fall rows, 530
-  sentence; `--dry-run` passes against live content).
-- **Stone crab** — season Oct 15 – May 1 (re-verified 2026-09-23), publish by ~Oct 1. Draft + publisher staged:
-  `drafts/florida-stone-crab-season-2026.html` + `drafts/publish_sailfish_stonecrab.py`
-- **Sailfish guide** — drafted 2026-09-16, **still unpublished**; regs entry already shipped. Staged for this
-  run with the Miami underwater sailfish image; re-verified against FWC 2026-09-23. ⚠️ FWC's billfish page
-  never says "aggregate" — print "one billfish per person per day" and drop the "not one of each" gloss (also
-  still in the `sailfish` note in `lib/regs.js`). Circle hooks are a **NOAA HMS tournament** rule, not an FWC one.
+  ✅ **PUBLISHED 2026-09-23 on William's go** — **302** rewritten around the order (status table, the dead-dates
+  callout, the declaration/EFP section, the aggregate breakdown, December watch), **172** Atlantic h3 + the Gulf
+  fall rows, **530** one sentence. `lib/regs.js` `red-snapper` now carries the Oct 9–22 Atlantic season and the
+  corrected Gulf schedule (rebuilt, pushed, jsDelivr purged, `deploy.py regs` run). Source kept at
+  `drafts/atlantic-red-snapper-302-eo2633.html` + `drafts/publish_atlantic_red_snapper_eo2633.py` (re-runnable;
+  every edit asserts a single match). **Oct 22 → the season closes; watch for the December decision.**
+- **Stone crab** ✅ **PUBLISHED 2026-09-23 — post 1788** (`/florida-stone-crab-season-2026/`, category 4), three
+  weeks ahead of the Oct 15 opener for indexing lead time. Re-verified against FWC that day; gained the
+  GoOutdoorsFlorida registration detail ("S" numbers), the 2 3/16″ escape ring, eyebrow/lede and the house
+  FishingBooker path (Naples, browser-verified). No widget, by the 2026-08-31 decision. Down-links from 309 and
+  310. ⚠️ **STILL OWED: `/go/stone-crab-trap/`, `/go/stone-crab-claw-gauge/`, `/go/stone-crab-mallet/`** — SSH to
+  the host timed out on port 22 all through the 2026-09-23 run (same outage as 2026-08-21) and ThirstyAffiliate
+  destinations are not REST-writable, so the gear section still links only `cut-resistant-fillet-glove` and
+  `floating-cooler`. Create them the next time SSH answers and wire them in.
+- **Sailfish** ✅ **PUBLISHED 2026-09-23 — post 1784** (`/how-to-catch-sailfish-florida/`, category 5), drafted
+  2026-09-16 and held. Featured image is an actual sailfish tagged Miami FL (media 1785). Card on the `/species/`
+  hub in the Offshore group; down-links from 273, 81 and 303. Widgets: `regs sailfish@atlantic` + the
+  **first-ever `setup offshore-troll` target**, both `'keep'` — it authors its own markers inside a bite band.
+  ⚠️ FWC's billfish page never says "aggregate" — print "one billfish per person per day"; the "not one of each"
+  gloss was removed from both the post and `lib/regs.js`. Circle hooks are a **NOAA HMS tournament** rule, not FWC.
 - **Sheepshead** — ~Nov 1
 
 ## 7.1 NEXT UP — the queue (set 2026-08-16)
@@ -304,7 +315,7 @@ verified against all 60 published posts on 2026-08-16 — **none of these exists
 | # | Post | Trigger | Notes |
 |---|---|---|---|
 | ~~1~~ | ~~**Bluefish & Spanish Mackerel in the Florida Surf**~~ | ~~before mid-Sept~~ | ✅ **DONE 2026-08-16 — post 1323.** `bluefish` + `spanish-mackerel` added to `lib/regs.js`; regs widget preset `bluefish@atlantic`, throw preset `spanish-mackerel`; card on `/species/` hub; down-links from 550, 501, 315. Post **315** also retrofitted with the regs widget, now that `spanish-mackerel` exists |
-| 2 | **Florida Stone Crab: Season, Claw Limits & How to Trap** | **publish ~Oct 1** (season opens **Oct 15**) | ⭐ **DRAFT IS WRITTEN AND APPROVED-TO-HOLD — do not rewrite it.** Full draft at **`drafts/florida-stone-crab-season-2026.html`** (2026-08-31). William reviewed it and chose to hold until nearer the season; I had proposed pulling it forward for indexing lead time. **At publish: re-verify the numbers against FWC, then just publish the file** — slug `florida-stone-crab-season-2026`, category **4** (How-To Guides, matching scallop 309 / lobster 310), SEO title `Florida Stone Crab Season 2026: Limits & How-To` (47), focus kw `florida stone crab season`, meta + excerpt in the run report. FWC-verified 2026-08-31: **Oct 15 – May 1** (closed May 2), claw min **2 7/8″ forearm**, **1 gal/person or 2 gal/vessel, whichever is less**, claws only, no sponged females, **5 traps/person** registered + hand-pulled + daylight only, traps may be placed **Oct 5** but **not tended until opening day**. **DECIDED: do NOT add stone crab to `lib/regs.js`** — all 22 entries are finfish and the schema has no shape for "claw forearm / gallons"; one crustacean would force a build→push→purge for a single entry. The draft carries a plain HTML table with the verified date instead, and takes no widget. **Still to do at publish:** create 3 ThirstyAffiliate links — stone crab trap, claw gauge, claw mallet (the draft currently links only the existing `cut-resistant-fillet-glove` and `floating-cooler`) |
+| ~~2~~ | ~~**Florida Stone Crab: Season, Claw Limits & How to Trap**~~ | ~~publish ~Oct 1~~ | ✅ **DONE 2026-09-23 — post 1788.** Details in §7 above; the three `/go/` links are still owed (SSH outage). Original note kept below for the reg detail. ⭐ **DRAFT WAS WRITTEN AND APPROVED-TO-HOLD — do not rewrite it.** Full draft at **`drafts/florida-stone-crab-season-2026.html`** (2026-08-31). William reviewed it and chose to hold until nearer the season; I had proposed pulling it forward for indexing lead time. **At publish: re-verify the numbers against FWC, then just publish the file** — slug `florida-stone-crab-season-2026`, category **4** (How-To Guides, matching scallop 309 / lobster 310), SEO title `Florida Stone Crab Season 2026: Limits & How-To` (47), focus kw `florida stone crab season`, meta + excerpt in the run report. FWC-verified 2026-08-31: **Oct 15 – May 1** (closed May 2), claw min **2 7/8″ forearm**, **1 gal/person or 2 gal/vessel, whichever is less**, claws only, no sponged females, **5 traps/person** registered + hand-pulled + daylight only, traps may be placed **Oct 5** but **not tended until opening day**. **DECIDED: do NOT add stone crab to `lib/regs.js`** — all 22 entries are finfish and the schema has no shape for "claw forearm / gallons"; one crustacean would force a build→push→purge for a single entry. The draft carries a plain HTML table with the verified date instead, and takes no widget. **Still to do at publish:** create 3 ThirstyAffiliate links — stone crab trap, claw gauge, claw mallet (the draft currently links only the existing `cut-resistant-fillet-glove` and `floating-cooler`) |
 | 3 | **How to Catch Sheepshead in Florida** | **~Nov 1** — winter species | The biggest single species hole on the site. **Already in `lib/regs.js`** → deploy the regs widget preset to `sheepshead`. Pairs with existing bridge/dock content. Species guide → **must add a card to the `/species/` hub (596)** |
 | ~~4~~ | ~~**Pier fishing cluster** (pillar + spokes)~~ | ~~evergreen~~ | ✅ **PILLAR + FIRST SPOKE DONE 2026-08-20 — posts 1387 (`/florida-pier-fishing-guide/`) and 1389 (`/best-fishing-piers-florida/`).** The orphaned `setup` `pier` preset finally has a target (1387, `keep`), plus regs preset `sheepshead`. Down-links added from 550, 40, 537. ⚠️ **Anna Maria City Pier is NOT fishable** — destroyed 2024, rebuild targeting ~Nov 2026; Rod &amp; Reel returns on land only. **JETTY SPOKE DONE 2026-08-29 — post 1629** (`/florida-jetty-fishing/`), setup preset `pier` + regs preset `snook`, both `keep`; Salt Strong jetty video (channel oembed-verified). Down-links from 1387, 550, 560, 331. ⚠️ **Venice South Jetty (Humphris Park) is CLOSED** — walkway shut since storm damage, no reopening date, repair-cost report not due until Nov 2026; most older articles still list it as fishable. **Pier rigs/bait deep-dive is RETIRED from the queue** — pillar 1387 already owns "Four Rigs That Cover Everything" and a standalone post would cannibalise it. ✅ **#4 IS NOW COMPLETE — the night-pier spoke is RETIRED too (2026-08-31).** Post **313** (`/night-snook-fishing-florida/`) already owned night snook and pillar 1387 already owned pier zones/rigs, so a standalone night-pier post sat between two existing posts and cannibalised both. The material was folded into 313 as its own H2 ("Fishing a pier or jetty at night") during that post's opener retrofit. **Do not re-queue a night-pier post.** |
 | ~~5~~ | ~~**Cleaning, Filleting & Cooking Your Catch**~~ | ~~evergreen~~ | ✅ **DONE 2026-08-21 — post 1459** (`/how-to-fillet-cook-florida-fish/`). regs preset `mangrove-snapper` (`keep`) — the reader switches species in the widget's own dropdown. 4 NEW ThirstyAffiliate links: `bubba-electric-fillet-knife`, `dexter-sani-safe-fillet-knife`, `cut-resistant-fillet-glove`, `foodsaver-vacuum-sealer`. Down-links from 530, 311, 385, 314. ⚠️ **FWC whole-condition is NOT a uniform statewide rule** — red drum's page carries it ("must remain in whole condition until landed ashore", + 4-fish vehicle transport limit, verified 2026-08-21); **king mackerel's page does not**. The post says so explicitly; don't "simplify" it into a blanket claim |
@@ -366,3 +377,18 @@ network carries a brand.
 - ⚠️ The widget falls back `keys → atlantic` when a species has no `keys` zone. That is right when
   the rule is statewide and **wrong** whenever Monroe follows the Gulf rule (bluefish: 10, not 3).
   Always ask which way Monroe goes before leaving `keys` out.
+
+## 7.2 QUEUE REPLENISHMENT — candidates found in the 2026-09-23 gap research
+
+§7.1 is down to **#3 sheepshead (~Nov 1)**. Proposed additions, in rough priority (awaiting William):
+
+1. **Florida saltwater closure calendar** — one sourced page, refreshed monthly (Oct 1 gag · Oct 4 Gulf red
+   snapper pattern shift · Oct 9–22 Atlantic red snapper · Oct 14 amberjack · Oct 15 stone crab opens ·
+   Oct 15–Nov 30 flounder closed · Dec 1/Dec 15 snook). Nothing in the SERP aggregates this; it also feeds
+   every seasonal post we write and would be the natural home for a future Bite Board link.
+2. **Bull redfish / "Redfish October"** — the redfish cluster's missing spoke; guides call October the best
+   shallow redfish month of the year and 560 only covers the fall run at passes.
+3. **The NE Florida red tide correction** — August's east-coast "red tide" was identified by FWC on Sep 4 as
+   *Karenia papilionacea*, not *K. brevis*, with no brevetoxins. Nobody has published the correction.
+4. **Flounder: the best bite of the year, and it's closed** — how to fish Oct 15–Nov 30 catch-and-release and
+   be ready for the Dec 1 reopen. 314 covers the closure but not the closed-season fishing.
