@@ -197,9 +197,9 @@
       }
     },
     {
-      key: 'sailfish', name: 'Sailfish', group: 'Offshore', guide: '',
-      fwc: FWC + 'billfish-tuna/', verified: '2026-09-16',
-      note: 'A federal HMS Angling permit is required in federal waters (not in state waters). Any landed billfish must be reported to NOAA within 24 hours (800-894-5528 or hmspermits.noaa.gov). A sailfish you intend to release may NOT be taken out of the water if you are in federal waters, or in state waters holding a federal HMS permit. One billfish per person covers all billfish combined, not one of each.',
+      key: 'sailfish', name: 'Sailfish', group: 'Offshore', guide: '/how-to-catch-sailfish-florida/',
+      fwc: FWC + 'billfish-tuna/', verified: '2026-09-23',
+      note: 'A federal HMS Angling permit is required in federal waters (not in state waters). Any landed billfish must be reported to NOAA within 24 hours (800-894-5528 or hmspermits.noaa.gov). A sailfish you intend to release may NOT be taken out of the water if you are in federal waters, or in state waters holding a federal HMS permit.',
       zones: {
         atlantic: { size: '63" lower jaw to fork', bag: '1 billfish per person', season: YEAR_ROUND, seasonText: 'Open year-round' },
         gulf: { size: '63" lower jaw to fork', bag: '1 billfish per person', season: YEAR_ROUND, seasonText: 'Open year-round' }
@@ -255,13 +255,13 @@
     },
     {
       key: 'red-snapper', name: 'Red Snapper', group: 'Reef', guide: '/florida-red-snapper-season-2026/',
-      fwc: FWC + 'snappers/', aggregate: true,
-      note: 'Season dates move every year and state and federal waters can differ. Check FWC before you run offshore.',
+      fwc: FWC + 'snappers/', aggregate: true, verified: '2026-09-23',
+      note: 'Atlantic: FWC executive order 26-33 (Sept 22, 2026) sets a single 14-day season, Oct 9–22, in state AND federal waters — 1 fish per person, no minimum size, inside a 10-fish snapper-grouper aggregate. You must declare each trip in FWC\'s Atlantic Red Snapper Reporting System before leaving the dock and carry a copy of the EFP; undeclared trips may not keep red snapper. Outside that window Atlantic harvest is closed. Gulf dates are separate and move every year — check FWC before you run offshore.',
       zones: {
-        atlantic: { size: '20" total length', bag: '2 per person (within the 10-snapper aggregate)',
-          season: null, seasonText: 'State waters open; federal Atlantic season is set annually — verify with FWC' },
+        atlantic: { size: 'No minimum size during the Oct 9–22 season', bag: '1 per person (declared trips only)',
+          season: null, seasonText: 'Oct 9–22, 2026 only — state and federal waters; closed otherwise' },
         gulf: { size: '16" total length', bag: '2 per person (within the 10-snapper aggregate)',
-          season: null, seasonText: 'Gulf 2026 season: May 22–Jul 31 plus announced fall dates — verify with FWC' }
+          season: null, seasonText: 'Gulf 2026: daily Sep 1–Oct 4 and Oct 9–22, then weekends and holidays into Jan 4, 2027' }
       }
     },
     {

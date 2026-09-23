@@ -123,6 +123,7 @@ DEPLOY = {
             ('posts', 1387, 'pier', 'keep'),  # pier fishing PILLAR (2026-08-20) — first target for the 'pier' preset
             ('posts', 1458, 'inshore-allround', 'keep'),  # saltwater knots guide (2026-08-21) — sits in the leader-sizing section
             ('posts', 1629, 'pier', 'keep'),  # jetty guide (2026-08-29) — second target for the 'pier' preset
+            ('posts', 1784, 'offshore-troll', 'keep'),  # sailfish guide (2026-09-23) — first target anywhere for 'offshore-troll'
         ],
     },
     'regs': {  # "Is it in season?" FWC size/bag checker -> reg-sensitive guides + tools hub
@@ -152,6 +153,7 @@ DEPLOY = {
             ('posts', 1459, 'mangrove-snapper', 'keep'),  # fillet/cook guide (2026-08-21) — sits in the whole-condition section; reader switches species
             ('posts', 1629, 'snook', 'keep'),  # jetty guide (2026-08-29) — sits under its own season section; reader switches species
             ('posts', 313, 'snook', 'keep'),  # night snook retrofit (2026-08-31) — Sept 1 opener; markers authored above the first H2
+            ('posts', 1784, 'sailfish@atlantic', 'keep'),  # sailfish guide (2026-09-23) — widget sits inside its own bite band
         ],
     },
 }
