@@ -309,6 +309,44 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
   **first-ever `setup offshore-troll` target**, both `'keep'` — it authors its own markers inside a bite band.
   ⚠️ FWC's billfish page never says "aggregate" — print "one billfish per person per day"; the "not one of each"
   gloss was removed from both the post and `lib/regs.js`. Circle hooks are a **NOAA HMS tournament** rule, not FWC.
+- 🗓️ **2026-09-30 run — the October 1 flip sweep. STAGED, NOT PUBLISHED.** The publish was refused by
+  the harness auto-mode classifier ("Production Deploy") — **the work is complete and dry-run clean, it
+  just needs William to run two commands.** `python3 drafts/publish_oct1_flip.py` (29 edits across 7
+  posts, every one asserting exactly one match) and `python3 drafts/publish_october_report.py --publish`.
+  FWC-verified this run: **snook** CH + Southwest closed *"May 1 – September 30"* → **open Oct 1**, so
+  from Oct 1 to **Nov 30 all nine regions are open at once** — the only such window of 2026 (Gulf Sep 1–
+  Nov 30, CH/SW Oct 1–Nov 30, Atlantic Sep 1–**Dec 15**). **Gag** Gulf *"Open September 1-30, 2026"*,
+  **Monroe excluded**; Atlantic *"Open May 1 – August 1"*. **Red grouper and black grouper are open
+  year-round** in the Gulf (20″ / 24″, inside the same 4-grouper aggregate) — that is the pivot that
+  keeps 345 and 829 earning instead of going dormant for eleven months. **Amberjack** Gulf Sep 1–Oct 13,
+  34″ FL. **Gulf red snapper** Sep 1–Oct 4 daily, **Oct 9–22 daily**, then the weekend blocks to Jan 4
+  2027. **Atlantic red snapper Oct 9–22** unchanged from EO 26-33. **Flounder** closed Oct 15–Nov 30.
+  **Hogfish** Atlantic/south of Cape Sable May 1–Oct 31. **Stone crab** Oct 15–May 1, 2 7/8″ claw.
+  Posts touched: **345** (full post-season reframe + the "what's still open" table), **331** (all-nine-
+  open reframe, Dec 1/Dec 15 as the new trap, first FishingBooker CTA, house disclosure), **313**, **501**,
+  **1629** (snook flip), **829** (de-dated the gag lede), **311** (stale anchor text). New post drafted:
+  `drafts/florida-fishing-report-october-2026.html` (category 1, the full October date table).
+  ⚠️ **PERMIT-NAME CORRECTION — the 2026-09-16 note in this file was wrong.** The thing an angler must
+  obtain is the **"State Reef Fish Angler" designation**; the **"State Reef Fish Survey"** is the survey
+  programme FWC runs off the back of it. A corpus audit found the bad name only in **345** (3×) — 829,
+  346, 302 and 1770 were already correct. The staged 345 rewrite fixes it. Don't reintroduce "Survey
+  designation".
+  ⚠️ **FWC URL traps — four of the obvious slugs 404.** Gag lives on `/recreational/groupers/` (**plural**;
+  both `gag-grouper/` and `grouper/` 404). Gulf red snapper lives on `/recreational/snappers/` (`red-snapper/`
+  404s). The designation page is `/recreational/state-reef-fish-survey/` (`state-reef-fish/` 404s).
+  Descending-device rules live on `/recreational/gear-rules/` (`descending-devices/` 404s). Add to the
+  pompano note in §9 — budget a search for any FWC page you have not fetched before.
+  ⚠️ **Descending device is NOT "descending device required".** FWC requires a **descending device *or*
+  venting tool, rigged and ready** on board any vessel fishing reef fish in state waters, and requires
+  *use* of one if a fish shows signs of barotrauma. Don't write it as descending-device-only.
+  ℹ️ The 2026-09-23 warning that `/snappers/` only shows the standing Atlantic rule is now **partly stale**
+  — the page carries the Oct 9–22 Atlantic season too. The standing 20″/2 rule is still printed alongside
+  it, so the "never write Atlantic red snapper from the snappers page" rule stands.
+  **Dates to act on:** Oct 4 → Gulf red snapper daily block ends · **Oct 9** → Atlantic + Gulf red snapper
+  daily · Oct 13 → last amberjack day (346) · **Oct 15** → stone crab opens (1788) **and** flounder closes
+  (314; 1770's "flounder filling out mixed bags" line goes stale) · **Oct 22** → Atlantic red snapper
+  closes, watch for FWC's December decision (302) · Oct 31 → hogfish (385) · **Dec 1** → Gulf snook closes
+  (331, 313, 501, 1629) · **Dec 15** → Atlantic snook closes.
 - **Sheepshead** — ~Nov 1
 
 ## 7.1 NEXT UP — the queue (set 2026-08-16)
@@ -391,8 +429,10 @@ network carries a brand.
    snapper pattern shift · Oct 9–22 Atlantic red snapper · Oct 14 amberjack · Oct 15 stone crab opens ·
    Oct 15–Nov 30 flounder closed · Dec 1/Dec 15 snook). Nothing in the SERP aggregates this; it also feeds
    every seasonal post we write and would be the natural home for a future Bite Board link.
-2. **Bull redfish / "Redfish October"** — the redfish cluster's missing spoke; guides call October the best
-   shallow redfish month of the year and 560 only covers the fall run at passes.
+2. ~~**Bull redfish / "Redfish October"**~~ — ❌ **WITHDRAWN 2026-09-30: this already exists** at
+   `/florida-bull-redfish-fall-run/` (verified 200 this run, and 331 already links to it). The 09-23 gap
+   research missed it. Don't re-queue; if the redfish cluster needs anything it is an audit of that post,
+   not a new one.
 3. **The NE Florida red tide correction** — August's east-coast "red tide" was identified by FWC on Sep 4 as
    *Karenia papilionacea*, not *K. brevis*, with no brevetoxins. Nobody has published the correction.
 4. **Flounder: the best bite of the year, and it's closed** — how to fish Oct 15–Nov 30 catch-and-release and
