@@ -37,3 +37,25 @@ GA4 returns typed objects (`getTotals()`, `getMetricHeaders()`, `getRows()`), no
 artifact of non-cookie auth. The real check is
 `$auth->is_authenticated()` + `$oc->has_sufficient_scopes()` under an explicit User_Options
 — both `true`. Never send William to re-authorize Google off the REST reading.
+
+---
+
+## ⚠️ TRAP: fragment sitelink rows inflate every per-page metric
+
+A `dimensions=page` GSC query returns **Google fragment sitelink URLs as separate "pages"** —
+e.g. `/florida-mullet-run-2026/#best-baits-for-the-run`. These come from the article template's
+auto-TOC anchors. Google awards them when it rates the content well structured, so they are a
+**good sign, not a duplicate-content bug — do not "fix" them.**
+
+But they wreck naive analysis:
+- They carry impressions with ~0 clicks (clicks land on the canonical URL).
+- Summing per-page impressions then **exceeds** the real site total
+  (measured 2026-10-05: 30,490 summed vs 14,306 actual; 16,105 of that was fragments across 14 rows).
+- `/florida-mullet-run-2026/` alone returned **7 rows** — 1 canonical + 6 fragments.
+
+**Always drop rows where `parse_url($u, PHP_URL_FRAGMENT) !== null` before aggregating.**
+`tools/ctr-gap-audit.php` does this and prints the excluded count so the filter stays visible.
+Cross-check: canonical-only impressions must ≈ the `dimensions=date` total.
+
+Printing only `parse_url($u, PHP_URL_PATH)` hides the fragment and makes these look like
+duplicate rows of the same page. Print the full URL when anything looks duplicated.
