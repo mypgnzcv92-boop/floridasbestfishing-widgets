@@ -75,15 +75,15 @@ HUB_CARD = ('<article class="fbf-card fbf-species"><div class="fbf-card__body">'
             '<p class="fbf-card__meta">Species guide</p></div></article>')
 
 # -------------------------------------------- post 172: the Oct 5-8 closed gap
-edit('172 table row: drop "OPEN NOW"', 'posts', 172,
+edit('172 table row: drop "OPEN NOW" (date-stable)', 'posts', 172,
      '<strong>September 1 \u2013 October 4 \u2190 OPEN NOW</strong>',
-     '<strong>September 1 \u2013 October 4 (closed now \u2014 reopens Oct 9)</strong>')
-edit('172 prose: reframe the gap', 'posts', 172,
+     '<strong>September 1 \u2013 October 4 (daily)</strong>')
+edit('172 prose: block-list the season (date-stable)', 'posts', 172,
      '<p>The fall season is open right now: <strong>daily through October 4</strong>, then '
      '<strong>daily again Oct 9&ndash;22</strong>,',
-     '<p><strong>Right now the Gulf is in a short closed gap.</strong> The daily block ran '
-     'September 1 through October 4 and the next legal day is <strong>October 9</strong>, when the '
-     'Gulf reopens <strong>daily through October 22</strong>,')
+     '<p>The fall season runs in blocks, not one continuous stretch: <strong>daily September 1 '
+     'through October 4</strong>, <strong>closed October 5\u20138</strong>, then '
+     '<strong>daily again October 9\u201322</strong>,')
 
 # ------------------------------------------------------- down-links (5 posts)
 edit('1387 down-link', 'posts', 1387,

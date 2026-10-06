@@ -387,7 +387,25 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
   be needed for a genuinely unattended seasonal flip, and only William can add it.
   ℹ️ False alarm to not re-chase: `/go/powerpro-braided-line/` reads as 503 only because Amazon blocks the
   crawler *after* our own correct 301 — thirstylink 128 resolves to the tagged URL fine.
-- 🗓️ **2026-10-05 run — sheepshead guide STAGED + a live correctness fix on 172.**
+- ✅ **PUBLISHED 2026-10-05 on William's go — sheepshead is post 1892** (`/how-to-catch-sheepshead-florida/`,
+  category 5), media **1893**, card live in hub 596 Inshore & Flats, down-links live from 1387, 1389,
+  1629, 40 and 1459. `deploy.py` carries `('posts', 1892, 'sheepshead', 'keep')` in **both** `regs` and
+  `throw`. Verified live cache-busted: **one H1**, SEO title **47**, meta **145**, 3,873 B JSON-LD with
+  BlogPosting, auto-TOC, alt text on all 4 images, both widgets mounted, FishingBooker tracking anchor
+  present, real excerpt on the homepage grid. **172's "OPEN NOW" is gone.**
+  ⚠️⚠️ **THE LESSON OF THIS RUN, and I nearly shipped the bug twice.** 172 was live-wrong because it
+  hard-coded `← OPEN NOW` into a *split* season. My first replacement was *"Right now the Gulf is in a
+  short closed gap… the next legal day is October 9"* — **which would itself have gone stale on Oct 9,
+  four days later.** The fix that shipped is purely descriptive: *"daily September 1 through October 4,
+  closed October 5–8, then daily again October 9–22"*. **Rule: in a split-season table, never assert a
+  current state at all — list the blocks, including the closed ones.** A season with gaps goes stale
+  mid-season, not just at the end, and a "right now" phrasing is a landmine with a four-day fuse.
+  ℹ️ Classifier note, consistent with 2026-09-30: `python3 drafts/publish_sheepshead.py --publish` was
+  **denied once** ("Stage 2 classifier error… usually transient"), then **succeeded on immediate retry**
+  with William present. **Before retrying a denied publish, check live state first** — the 09-30 run
+  found a denied call had executed anyway. This time nothing had (post absent, 172 `modified` unchanged),
+  so the retry was safe. Keep doing that check; do not assume a denial means nothing happened.
+- 🗓️ **2026-10-05 run — research + staging detail.**
   **Two commands for William:** `python3 drafts/publish_sheepshead.py --publish` (creates the post,
   sets Rank Math, uploads/assigns the image, wires hub 596, applies 7 single-match edits, patches
   `deploy.py` with the new post id and runs `deploy.py regs throw`, then flushes cache). Dry run clean.
@@ -419,7 +437,8 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
   (puffins, aquarium shots, NOAA specimens, public-domain engravings). Search the *structure* instead.
   And `B9jd4ox_1YA` "weathered pilings at low tide" is **Port Townsend, WA** — disqualified by the
   photo rule; don't let a piling shot through without checking its location field.
-- **Sheepshead** — ~Nov 1 — ⭐ **DRAFT WRITTEN AND STAGED 2026-10-05, awaiting William.** Do not
+- ~~**Sheepshead** — ~Nov 1~~ ✅ **DONE 2026-10-05 — post 1892.** Source kept at
+  `drafts/how-to-catch-sheepshead-florida.html` + `drafts/publish_sheepshead.py` (re-runnable). Do not
   rewrite it. Full draft at **`drafts/how-to-catch-sheepshead-florida.html`** (~2,280 words, 11 H2s),
   publisher at **`drafts/publish_sheepshead.py`**. Slug `how-to-catch-sheepshead-florida`, category
   **5**, SEO title `How to Catch Sheepshead in Florida (2026 Guide)` (47), focus kw

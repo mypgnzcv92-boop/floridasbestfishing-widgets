@@ -87,6 +87,7 @@ DEPLOY = {
             ('posts', 567, 'seatrout'),  # added 2026-08-08 (best seatrout lures gear post)
             ('posts', 576, 'seatrout'),  # added 2026-08-13 (popping cork how-to — seatrout cluster spoke)
             ('posts', 1323, 'spanish-mackerel', 'keep'),  # bluefish/Spanish surf guide (2026-08-16) — sits in the lure section
+            ('posts', 1892, 'sheepshead', 'keep'),  # sheepshead guide — widget sits after the bait section
             # region pages — preset to each region's signature inshore species, placed by the gear section
             ('pages', 238, 'redfish', GEAR), ('pages', 234, 'snook', GEAR),
             ('pages', 230, 'redfish', GEAR), ('pages', 81, 'snook', GEAR),
@@ -154,6 +155,7 @@ DEPLOY = {
             ('posts', 1629, 'snook', 'keep'),  # jetty guide (2026-08-29) — sits under its own season section; reader switches species
             ('posts', 313, 'snook', 'keep'),  # night snook retrofit (2026-08-31) — Sept 1 opener; markers authored above the first H2
             ('posts', 1784, 'sailfish@atlantic', 'keep'),  # sailfish guide (2026-09-23) — widget sits inside its own bite band
+            ('posts', 1892, 'sheepshead', 'keep'),  # sheepshead guide (how-to-catch-sheepshead-florida) — authors its own markers above the first H2
         ],
     },
 }
