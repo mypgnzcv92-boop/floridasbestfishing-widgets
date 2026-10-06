@@ -387,7 +387,45 @@ Seasonal overlay on lead time. ✅ = already covered, don't re-queue:
   be needed for a genuinely unattended seasonal flip, and only William can add it.
   ℹ️ False alarm to not re-chase: `/go/powerpro-braided-line/` reads as 503 only because Amazon blocks the
   crawler *after* our own correct 301 — thirstylink 128 resolves to the tagged URL fine.
-- **Sheepshead** — ~Nov 1
+- 🗓️ **2026-10-05 run — sheepshead guide STAGED + a live correctness fix on 172.**
+  **Two commands for William:** `python3 drafts/publish_sheepshead.py --publish` (creates the post,
+  sets Rank Math, uploads/assigns the image, wires hub 596, applies 7 single-match edits, patches
+  `deploy.py` with the new post id and runs `deploy.py regs throw`, then flushes cache). Dry run clean.
+  ⚠️ **Post 172 was LIVE-WRONG on Oct 5.** Its table row read *"September 1 – October 4 ← OPEN NOW"*
+  and the prose *"The fall season is open right now: daily through October 4"*. **Oct 5–8 is a closed
+  Gulf red snapper gap** — FWC prints `Sep. 1 - Oct. 4 (Daily)` then `Oct. 9 - 22 (Daily)`, so a
+  hard-coded "OPEN NOW" inside a multi-block season goes stale *mid-season*, not at season end.
+  **Lesson: never write "OPEN NOW" into a split-season table.** 302 and 1889 were both already correct
+  (1889 presents Oct 4 / Oct 9 as a date table, which is why it survived the flip).
+  **Sheepshead FWC-verified 2026-10-05** from `/recreational/sheepshead/`: **12″ total length, 8 per
+  person, open year-round**, ONE statewide rule — **no Gulf/Atlantic split and no Monroe exception**
+  (so the widget's `keys → atlantic` fallback is correct here). **Vessel limit 50 per trip during
+  March and April only.** Gear: hook and line, cast net, seine, spear or gig. **Multiple hooks with
+  natural bait are prohibited** — a two-hook shrimp dropper loop is illegal in state waters, worth
+  saying out loud because lots of people fish one. Snatching prohibited. Biscayne NP has its own rules.
+  Species profile: no barbels (the black-drum tell), incisors/molars/rounded grinders, to 36″ but
+  commonly ~13″, state record **15 lb 2 oz near Homosassa**, **fractional spawners, March–April**,
+  moving nearshore in late winter/early spring — which is exactly why the vessel cap lands on those
+  two months. `lib/regs.js` already carried sheepshead correctly → **no build/push/purge needed.**
+  Widgets: `regs sheepshead` + `throw sheepshead`, **both `'keep'`** (the post authors its own markers).
+  Down-links from **1387, 1389, 1629, 40, 1459** — all five already had an unlinked "sheepshead"
+  mention, so each edit converts existing prose rather than bolting on a link. Card goes in hub 596
+  **Inshore & Flats**. Featured image is Unsplash **photo-1612226692243** (Craig Cameron) — tagged
+  **Panama City, FL**, weathered pilings + Hathaway Bridge on a January day; reuse-checked clear
+  against all 46 media items. 8 affiliate links reused, **all 8 verified 301 → tagged** (no new
+  thirstylinks needed). No video: no reputable channel's video ID was resolvable this run, so per the
+  rule, none embedded.
+  ⚠️ **Unsplash trap for next time:** searching `sheepshead fish` returns no usable sheepshead at all
+  (puffins, aquarium shots, NOAA specimens, public-domain engravings). Search the *structure* instead.
+  And `B9jd4ox_1YA` "weathered pilings at low tide" is **Port Townsend, WA** — disqualified by the
+  photo rule; don't let a piling shot through without checking its location field.
+- **Sheepshead** — ~Nov 1 — ⭐ **DRAFT WRITTEN AND STAGED 2026-10-05, awaiting William.** Do not
+  rewrite it. Full draft at **`drafts/how-to-catch-sheepshead-florida.html`** (~2,280 words, 11 H2s),
+  publisher at **`drafts/publish_sheepshead.py`**. Slug `how-to-catch-sheepshead-florida`, category
+  **5**, SEO title `How to Catch Sheepshead in Florida (2026 Guide)` (47), focus kw
+  `how to catch sheepshead in florida`, meta 145, excerpt 158. Pulled ~4 weeks ahead of the Nov 1
+  trigger for indexing lead time, same reasoning as stone crab 1788. **At publish: re-verify the FWC
+  numbers, then just run the publisher.**
 
 ## 7.1 NEXT UP — the queue (set 2026-08-16)
 
